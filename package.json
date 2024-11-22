@@ -5,11 +5,11 @@
   "main": "./src/index.js",
   "repository": "https://github.com/tushar-454/gsmartbd-backend.git",
   "author": "tushar",
-  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "prod": "NODE_ENV=prod nodemon src/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
