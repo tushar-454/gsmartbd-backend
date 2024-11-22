@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: GSmartBD | A Multi Vendor Ecommerce Platform API's
+  description: 'GSmartBD is a multi vendor ecommerce platform. This API documentation is for the backend of the platform. The API is built using Node.js, Express.js, MongoDB, and Mongoose.'
+  contact:
+    name: Auroraxia
+    url: https://auroraxia.com/
+    email: auroraxiaofficial@gmail.com
+servers:
+  - description: Dev
+    url: 'http://localhost:3000/api/v1'
+
+tags: []
+
+paths: {}
