@@ -8,8 +8,8 @@
   "private": true,
   "scripts": {
     "start": "node src/index.js",
-    "dev": "NODE_ENV=dev nodemon src/index.js",
-    "prod": "NODE_ENV=prod nodemon src/index.js"
+    "dev": "cross-env NODE_ENV=dev && nodemon src/index.js",
+    "prod": "cross-env NODE_ENV=prod && nodemon src/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -25,5 +25,14 @@
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2"
   }
 }

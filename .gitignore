@@ -28,7 +28,7 @@ jspm_packages/
 .node_repl_history
 
 # IDEs and editors
-.vscode/
+# .vscode/
 .idea/
 .DS_Store
 
