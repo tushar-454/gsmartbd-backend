@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "dev": "NODE_ENV=dev nodemon src/index.js",
     "prod": "NODE_ENV=prod nodemon src/index.js"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.2",
     "nodemon": "^3.1.7",
+    "redis": "^4.7.0",
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0",
     "zod": "^3.23.8"
