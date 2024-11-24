@@ -33,15 +33,99 @@ tags:
 
 paths:
   # Auth api start
-  '/auth/admin/register':
+  '/auth/superadmin/register':
     post:
       tags:
         - Auth
-      summary: Register a new user
-      description: Register a new user
+      summary: Create a new admin
+      description: Create a new admin account, only superadmin can create admin account and superadmin can create superadmin account also by passing role as superadmin in the request body and superadmin can create admin account by passing role as admin in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the admin/superadmin
+                  example: Admin
+                email:
+                  type: string
+                  format: email
+                  description: Email of the admin/superadmin
+                  example: admin@gmail.com
+                password:
+                  type: string
+                  description: Password of the admin/superadmin
+                  example: password
+                role:
+                  type: string
+                  description: Role of the admin/superadmin
+                  example: admin
+                status:
+                  type: string
+                  description: Status of the admin/superadmin
+                  example: active
+                  default: active
+                permissions:
+                  type: array
+                  description: Permissions of the admin/superadmin
+                  items:
+                    type: string
+                    example: ['create', 'read', 'update', 'delete']
+              required: ['name', 'email', 'password', 'role']
       responses:
+        '201':
+          description: Admin/superadmin created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 201
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Admin/superadmin created successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the admin/superadmin
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the admin/superadmin
+                        example: Admin
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the admin/superadmin
+                        example: admin@gmail.com
+                      role:
+                        type: string
+                        description: Role of the admin/superadmin
+                        example: admin
+                      status:
+                        type: string
+                        description: Status of the admin/superadmin
+                        example: active
+                      permissions:
+                        type: array
+                        description: Permissions of the admin/superadmin
+                        items:
+                          type: string
+                          example: ['create', 'read', 'update', 'delete']
+                      lastLogin:
+                        type: string
+                        format: date-time
+                        description: Last login of the admin/superadmin
+                        example: 2021-09-01T00:00:00.000Z
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -50,11 +134,81 @@ paths:
     post:
       tags:
         - Auth
-      summary: Register a new merchant
-      description: Register a new user
+      summary: Login a admin/superadmin
+      description: Login a admin/superadmin account by passing email and password in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email of the admin/superadmin
+                  example: superadmin@gmail.com
+                password:
+                  type: string
+                  description: Password of the admin/superadmin
+                  example: password
+              required: ['email', 'password']
       responses:
+        '200':
+          description: Admin/superadmin logged in successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Admin/superadmin logged in successfully
+                  data:
+                    type: object
+                    description: Data of the admin login response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the admin/superadmin
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the admin/superadmin
+                        example: Admin
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the admin/superadmin
+                        example: superadmin@gmail.com
+                      role:
+                        type: string
+                        description: Role of the admin/superadmin
+                        example: superadmin
+                      status:
+                        type: string
+                        description: Status of the admin/superadmin
+                        example: active
+                      permissions:
+                        type: array
+                        description: Permissions of the admin/superadmin
+                        items:
+                          type: string
+                          example: ['create', 'read', 'update', 'delete']
+                      lastLogin:
+                        type: string
+                        format: date-time
+                        description: Last login of the admin/superadmin
+                        example: 2021-09-01T00:00:00.000Z
+                  token:
+                    type: string
+                    description: Token of the admin/superadmin
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmY3YjNiN2IzYjNiM2IzYjNiM2IzYjMiLCJpYXQiOjE2MzA0NjQwNzQsImV4cCI6MTYzMDQ2NzY3NH0.7
+
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -63,11 +217,65 @@ paths:
     post:
       tags:
         - Auth
-      summary: Register a new superadmin/admin
-      description: Register a new user
+      summary: Register a new merchant account
+      description: Register a new merchant account by passing name/shopName, email, password in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the merchant/shopname
+                  example: Mini store
+                email:
+                  type: string
+                  format: email
+                  description: Email of the merchant
+                  example: merchant@gmail.com
+                phone:
+                  type: string
+                  description: Phone of the merchant
+                  example: 01712345678
+                password:
+                  type: string
+                  description: Password of the merchant
+                  example: password
+              required: ['name', 'email', 'phone', 'password']
       responses:
+        '201':
+          description: Merchant registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 201
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Merchant registered successfully
+                  data:
+                    type: object
+                    description: Data of the merchant account creation response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the merchant
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the merchant
+                        example: Mini store
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the merchant
+                        example: merchant@gmail.com
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -76,11 +284,74 @@ paths:
     post:
       tags:
         - Auth
-      summary: Login a user
-      description: Register a new user
+      summary: Login a merchant
+      description: Login a merchant account by passing email and password in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email of the merchant
+                  example: merchant@gmail.com
+                password:
+                  type: string
+                  description: Password of the merchant
+                  example: password
+              required: ['email', 'password']
       responses:
+        '200':
+          description: Merchant logged in successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Merchant logged in successfully
+                  data:
+                    type: object
+                    description: Data of the merchant login response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the merchant
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      merchantId:
+                        type: string
+                        description: Merchant id of the merchant
+                        example: GSBD-3043
+                      name:
+                        type: string
+                        description: Name of the merchant
+                        example: Mini store
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the merchant
+                        example: merchant@gmail.com
+                      phone:
+                        type: string
+                        description: Phone of the merchant
+                        example: 01712345678
+                      status:
+                        type: string
+                        description: Status of the merchant
+                        example: disabled
+
+                  token:
+                    type: string
+                    description: Token of the merchant
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmY3YjNiN2IzYjNiM2IzYjNiM2IzYjMiLCJpYXQiOjE2MzA0NjQwNzQsImV4cCI6MTYzMDQ2NzY3NH0.7
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -89,37 +360,140 @@ paths:
     post:
       tags:
         - Auth
-      summary: Register a new merchant
-      description: Register a new user
+      summary: Register a new customer account
+      description: Register a new customer account by passing name, email, password in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the customer
+                  example: John Doe
+                email:
+                  type: string
+                  format: email
+                  description: Email of the customer
+                  example: customer@gmail.com
+                phone:
+                  type: string
+                  description: Phone of the customer
+                  example: 01712345678
+                password:
+                  type: string
+                  description: Password of the customer
+                  example: password
+              required: ['name', 'email', 'phone', 'password']
       responses:
+        '201':
+          description: Customer registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 201
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customer registered successfully
+                  data:
+                    type: object
+                    description: Data of the customer account creation response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the customer
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the customer
+                        example: John Doe
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the customer
+                        example: customer@gmail.com
+                      phone:
+                        type: string
+                        description: Phone of the customer
+                        example: 01712345678
         '400':
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
-  '/api/auth/customer/login':
+  '/auth/customer/login':
     post:
       tags:
         - Auth
-      summary: Register a new superadmin/admin
-      description: Register a new user
+      summary: Login a customer
+      description: Login a customer account by passing email and password in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email of the customer
+                  example: customer@gmail.com
+                password:
+                  type: string
+                  description: Password of the customer
+                  example: password
+              required: ['email', 'password']
       responses:
-        '400':
-          $ref: '#/components/responses/400'
-        '500':
-          $ref: '#/components/responses/500'
-  '/auth/refresh-token':
-    post:
-      tags:
-        - Auth
-      summary: forgot password reset apiend point
-      description: Register a new user
-      requestBody:
-        content: {}
-      responses:
+        '201':
+          description: Customer registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 201
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customer registered successfully
+                  data:
+                    type: object
+                    description: Data of the customer account creation response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the customer
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the customer
+                        example: John Doe
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the customer
+                        example: customer@gmail.com
+                      phone:
+                        type: string
+                        description: Phone of the customer
+                        example: 01712345678
+                      status:
+                        type: string
+                        description: Status of the customer
+                        example: active
+                  token:
+                    type: string
+                    description: Token of the customer
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmY3YjNiN2IzYjNiM2IzYjNiM2IzYjMiLCJpYXQiOjE2MzA0NjQwNzQsImV4cCI6MTYzMDQ2NzY3NH0.7
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -128,11 +502,37 @@ paths:
     post:
       tags:
         - Auth
-      summary: Register a new superadmin/admin
-      description: Register a new user
+      security:
+        - bearerAuth: []
+      summary: Logout a customer / merchant / admin / superadmin
+      description: Logout a customer / merchant / admin / superadmin by passing token in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: Token of the user
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmY3YjNiN2IzYjNiM2IzYjNiM2IzYjMiLCJpYXQiOjE2MzA0NjQwNzQsImV4cCI6MTYzMDQ2NzY3NH0.7
+              required: ['token']
       responses:
+        '200':
+          description: Logged out successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Logged out successfully
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -141,19 +541,43 @@ paths:
     post:
       tags:
         - Auth
-      summary: Register a new superadmin/admin
-      description: Register a new user
+      summary: forgot password of a user
+      description: forgot password of a user by passing email in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email of the user
+                  example: forgotemail@gmail.com
+              required: ['email']
       responses:
+        '200':
+          description: Email sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Email sent successfully
         '400':
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
   '/auth/reset-password':
     post:
-      tags:
-        - Auth
+      tags: []
       summary: Register a new superadmin/admin
       description: Register a new user
       requestBody:
@@ -167,50 +591,90 @@ paths:
     post:
       tags:
         - Auth
-      summary: Register a new superadmin/admin
-      description: Register a new user
+      security:
+        - bearerAuth: []
+      summary: change password of a user
+      description: change password of a user by passing email, oldPassword, newPassword in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email of the user
+                  example: usermail@gmail.com
+                oldPassword:
+                  type: string
+                  description: Old password of the user
+                  example: oldpassword
+                newPassword:
+                  type: string
+                  description: New password of the user
+                  example: newpassword
+              required: ['email', 'oldPassword', 'newPassword']
       responses:
+        '200':
+          description: Password changed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Password changed successfully
         '400':
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
-  '/auth/verify-email/:token':
+  '/auth/verify-email':
     post:
       tags:
         - Auth
-      summary: Register a new superadmin/admin
-      description: Register a new user
+      security:
+        - bearerAuth: []
+      summary: Verify email of a customer / merchant
+      description: Verify email of a customer / merchant by passing token and email in the request body.
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email of the user
+                  example: verifyemail@gmail.com
+                token:
+                  type: string
+                  description: Token of the user
+                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMmY3YjNiN2IzYjNiM2IzYjNiM2IzYjMiLCJpYXQiOjE2MzA0NjQwNzQsImV4cCI6MTYzMDQ2NzY3NH0.7
+              required: ['email', 'token']
       responses:
-        '400':
-          $ref: '#/components/responses/400'
-        '500':
-          $ref: '#/components/responses/500'
-  '/auth/validate-token':
-    post:
-      tags:
-        - Auth
-      summary: Register a new superadmin/admin
-      description: Register a new user
-      requestBody:
-        content: {}
-      responses:
-        '400':
-          $ref: '#/components/responses/400'
-        '500':
-          $ref: '#/components/responses/500'
-  '/auth/role':
-    post:
-      tags:
-        - Auth
-      summary: Register a new superadmin/admin
-      description: Register a new user
-      requestBody:
-        content: {}
-      responses:
+        '200':
+          description: Email verified successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Email verified successfully'
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -225,21 +689,144 @@ paths:
         - bearerAuth: []
       summary: Get a superadmin by id
       description: Get a superadmin by id
-      parameters: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the superadmin
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
-        '400':
-          $ref: '#/components/responses/400'
+        '200':
+          description: Superadmin found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Superadmin found successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the superadmin
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the superadmin
+                        example: Admin
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the superadmin
+                        example: superadmin@gmail.com
+                      role:
+                        type: string
+                        description: Role of the superadmin
+                        example: superadmin
+                      status:
+                        type: string
+                        description: Status of the superadmin
+                        example: active
+                      permissions:
+                        type: array
+                        description: Permissions of the superadmin
+                        items:
+                          type: string
+                          example: ['create', 'read', 'update', 'delete']
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
         '500':
           $ref: '#/components/responses/500'
     put:
       tags:
         - Admin
+      security:
+        - bearerAuth: []
       summary: Update a superadmin by id
       description: Update a superadmin by id
-      parameters: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the superadmin
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the superadmin
+                  example: Admin
+                password:
+                  type: string
+                  description: Password of the superadmin
+                  example: password
+              required: ['name', 'password']
       responses:
+        '200':
+          description: Superadmin updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Superadmin found successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the superadmin
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the superadmin
+                        example: Admin
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the superadmin
+                        example: superadmin@gmail.com
+                      role:
+                        type: string
+                        description: Role of the superadmin
+                        example: superadmin
+                      status:
+                        type: string
+                        description: Status of the superadmin
+                        example: active
+                      permissions:
+                        type: array
+                        description: Permissions of the superadmin
+                        items:
+                          type: string
+                          example: ['create', 'read', 'update', 'delete']
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -2188,9 +2775,20 @@ components:
           schema:
             type: object
             properties:
-              message:
-                type: string
-                example: Bad request
+              status:
+                type: number
+                example: 400
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      example: email
+                    message:
+                      type: string
+                      example: Email is required
     '401':
       description: Unauthorized
       content:
@@ -2198,9 +2796,25 @@ components:
           schema:
             type: object
             properties:
+              status:
+                type: number
+                example: 401
               message:
                 type: string
                 example: Unauthorized
+    '403':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                example: 403
+              message:
+                type: string
+                example: Forbidden access
     '404':
       description: Not found
       content:
@@ -2208,9 +2822,12 @@ components:
           schema:
             type: object
             properties:
-              message:
+              status:
+                type: number
+                example: 404
+              error:
                 type: string
-                example: Not found
+                example: Resources Not found
     '500':
       description: Internal server error
       content:
@@ -2218,7 +2835,10 @@ components:
           schema:
             type: object
             properties:
-              message:
+              status:
+                type: number
+                example: 500
+              error:
                 type: string
                 example: Internal server error
 
