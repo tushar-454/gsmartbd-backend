@@ -1,10 +1,12 @@
 const redisModule = require('redis');
-const { redis } = require('../config');
+const { redis } = require('./index');
 
 const client = redisModule.createClient({
-  host: redis[redis.environment].host,
-  port: redis[redis.environment].port,
   password: redis[redis.environment].password,
+  socket: {
+    host: redis[redis.environment].host,
+    port: redis[redis.environment].port,
+  },
 });
 
 const connectRedis = async () => {
