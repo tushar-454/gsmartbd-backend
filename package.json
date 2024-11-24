@@ -8,8 +8,8 @@
   "private": true,
   "scripts": {
     "start": "node src/index.js",
-    "dev": "cross-env NODE_ENV=dev && nodemon src/index.js",
-    "prod": "cross-env NODE_ENV=prod && nodemon src/index.js"
+    "dev": "cross-env NODE_ENV=dev nodemon src/index.js",
+    "prod": "cross-env NODE_ENV=prod nodemon src/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

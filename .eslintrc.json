@@ -15,7 +15,8 @@
     "no-process-exit": "off",
     "object-shorthand": "warn",
     "class-methods-use-this": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-plusplus": "off"
   },
   "plugins": ["prettier"]
 }

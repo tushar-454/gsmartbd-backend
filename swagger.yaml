@@ -10,7 +10,2216 @@ info:
 servers:
   - description: Dev
     url: 'http://localhost:3000/api/v1'
+  - description: Production
+    url: 'https://gsmartbd.com/api/v1'
 
-tags: []
+tags:
+  - name: Auth
+  - name: Admin
+  - name: Blog
+  - name: Cart
+  - name: Category
+  - name: Collection
+  - name: Comment
+  - name: Coupon
+  - name: Customer
+  - name: Discount
+  - name: Order
+  - name: Product
+  - name: Reels
+  - name: Review
+  - name: Transaction
+  - name: Merchant
 
-paths: {}
+paths:
+  # Auth api start
+  '/auth/admin/register':
+    post:
+      tags:
+        - Auth
+      summary: Register a new user
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/admin/login':
+    post:
+      tags:
+        - Auth
+      summary: Register a new merchant
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/merchant/register':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/merchant/login':
+    post:
+      tags:
+        - Auth
+      summary: Login a user
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/customer/register':
+    post:
+      tags:
+        - Auth
+      summary: Register a new merchant
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/api/auth/customer/login':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/refresh-token':
+    post:
+      tags:
+        - Auth
+      summary: forgot password reset apiend point
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/logout':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/forgot-password':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/reset-password':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/change-password':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/verify-email/:token':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/validate-token':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/auth/role':
+    post:
+      tags:
+        - Auth
+      summary: Register a new superadmin/admin
+      description: Register a new user
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # super admin api start
+  '/superadmin/{id}':
+    get:
+      tags:
+        - Admin
+      security:
+        - bearerAuth: []
+      summary: Get a superadmin by id
+      description: Get a superadmin by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Admin
+      summary: Update a superadmin by id
+      description: Update a superadmin by id
+      parameters: []
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/superadmin/admin':
+    get:
+      tags:
+        - Admin
+      security:
+        - bearerAuth: []
+      summary: Get all admin
+      description: Get all superadmin/admin
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - Admin
+      summary: Create a new admin
+      description: Create a new superadmin/admin
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Admin
+      summary: Create a new admin
+      description: Create a new superadmin/admin
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/superadmin/admin/{id}':
+    get:
+      tags:
+        - Admin
+      security:
+        - bearerAuth: []
+      summary: Get an admin by id
+      description: Get an admin by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Admin
+      summary: Update an admin by id
+      description: Update an admin by id
+      parameters: []
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Admin
+      summary: Delete an admin by id
+      description: Delete an admin by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # admin api start
+  '/admin/merchants':
+    get:
+      tags:
+        - Admin
+      summary: Get all merchants
+      description: Get all merchants
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - Admin
+      summary: Create a new merchant
+      description: Create a new merchant
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/admin/merchants/{id}':
+    get:
+      tags:
+        - Admin
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Admin
+      summary: Update a merchant by id
+      description: Update a merchant by id
+      parameters: []
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Admin
+      summary: Delete a merchant by id
+      description: Delete a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/admin/merchants/:id/status':
+    patch:
+      tags:
+        - Admin
+      summary: Get all products of a merchant
+      description: Get all products of a merchant
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  '/admin/customers':
+    get:
+      tags:
+        - Admin
+      summary: Get all merchants
+      description: Get all merchants
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - Admin
+      summary: Create a new merchant
+      description: Create a new merchant
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/admin/customers/{id}':
+    get:
+      tags:
+        - Admin
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Admin
+      summary: Update a merchant by id
+      description: Update a merchant by id
+      parameters: []
+      requestBody:
+        content: {}
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Admin
+      summary: Delete a merchant by id
+      description: Delete a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/admin/customers/:id/status':
+    patch:
+      tags:
+        - Admin
+      summary: Get all products of a merchant
+      description: Get all products of a merchant
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  '/admin/bulk-action/merchant':
+    post:
+      tags:
+        - Admin
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Admin
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Admin
+      summary: Delete a merchant by id
+      description: Delete a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/admin/bulk-action/customer':
+    post:
+      tags:
+        - Admin
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Admin
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Admin
+      summary: Delete a merchant by id
+      description: Delete a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Blog api start
+  '/blogs':
+    get:
+      tags:
+        - Blog
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - Blog
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/blogs/{id}':
+    get:
+      tags:
+        - Blog
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Blog
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Blog
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Cart api start
+  '/carts':
+    post:
+      tags:
+        - Cart
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/carts/{userId}':
+    get:
+      tags:
+        - Cart
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Cart
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Cart
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/cart/{userId}/clear':
+    delete:
+      tags:
+        - Cart
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Category api start
+  '/categories':
+    get:
+      tags:
+        - Category
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - Category
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/categories/{name}':
+    get:
+      tags:
+        - Category
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Category
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Category
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Collection api start
+  '/collections':
+    get:
+      tags:
+        - Collection
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - Collection
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/collections/{name}':
+    get:
+      tags:
+        - Collection
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Collection
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Collection
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Comment api start
+  '/comments':
+    post:
+      tags:
+        - Comment
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/comments/{articleId}':
+    get:
+      tags:
+        - Comment
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/comments/{id}':
+    put:
+      tags:
+        - Comment
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Comment
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Coupon api start
+  '/coupons':
+    post:
+      tags:
+        - Coupon
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Coupon
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/coupons/{id}':
+    get:
+      tags:
+        - Coupon
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Coupon
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Coupon
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Customer api start
+  '/customers/{id}':
+    get:
+      tags:
+        - Customer
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Customer
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Customer
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Discount api start
+  '/discounts':
+    post:
+      tags:
+        - Discount
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Discount
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/discounts/{id}':
+    get:
+      tags:
+        - Discount
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Discount
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Discount
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Order api start
+  '/orders':
+    post:
+      tags:
+        - Order
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Order
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/orders/{id}':
+    get:
+      tags:
+        - Order
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Order
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Order
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/orders/{userId}':
+    get:
+      tags:
+        - Order
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Product api start
+  '/products':
+    post:
+      tags:
+        - Product
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Product
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/product/{id}':
+    get:
+      tags:
+        - Product
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Product
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Product
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/product/{merchantId}':
+    get:
+      tags:
+        - Product
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Product api start
+  '/reels':
+    post:
+      tags:
+        - Reels
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/reels/{id}':
+    get:
+      tags:
+        - Reels
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Reels
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Reels
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/reels/{merchantId}':
+    get:
+      tags:
+        - Reels
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Comment api start
+  '/reviews':
+    post:
+      tags:
+        - Review
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/reviews/{productId}':
+    get:
+      tags:
+        - Review
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/reviews/{id}':
+    put:
+      tags:
+        - Review
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Review
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Transaction api start
+  '/transactions':
+    post:
+      tags:
+        - Transaction
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    get:
+      tags:
+        - Transaction
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/transactions/{userId}':
+    get:
+      tags:
+        - Transaction
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/transactions/{id}':
+    delete:
+      tags:
+        - Transaction
+      summary: Get a merchant by id
+      description: Get a merchant by id
+      parameters: []
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  # Merchant api start
+  '/merchants':
+    get:
+      tags:
+        - Merchant
+      summary: get all merchant admin
+      description: this is description
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/merchants/{id}':
+    get:
+      tags:
+        - Merchant
+      summary: get all merchant admin
+      description: this is description
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Merchant
+      summary: get all merchant admin
+      description: this is description
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+    delete:
+      tags:
+        - Merchant
+      summary: get all merchant admin
+      description: this is description
+      responses:
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Admin:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            name:
+              type: string
+              example: John Doe
+            email:
+              type: string
+              format: email
+              example: johndoe@example.com
+            photo:
+              type: string
+              example: https://awa.s3.amazonaws.com/2309dfs9fj4324dfd334.jpg
+            password:
+              type: string
+              example: 3459&*$#JFJ
+            role:
+              type: string
+              enum: [admin, superadmin]
+              example: admin
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+            permissions:
+              type: array
+              items:
+                type: string
+              example: ['create', 'read', 'update', 'delete']
+            lastLogin:
+              type: string
+              format: date-time
+              example: 2021-09-01T12:00:00.000Z
+          required:
+            [
+              _id,
+              name,
+              email,
+              photo,
+              password,
+              role,
+              status,
+              permissions,
+              lastLogin,
+            ]
+        - $ref: '#/components/schemas/Timestamp'
+    Blog:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            post_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            title:
+              type: string
+              example: How to create a blog
+              description: Title of the blog post
+            body_html:
+              type: string
+              example: <p>This is a blog post</p>
+              description: Body of the blog post in HTML format
+            author_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            vendor_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            tags:
+              type: array
+              items:
+                type: string
+              example: ['blog', 'how-to']
+            status:
+              type: string
+              enum: [draft, published, archived, deleted, pending]
+              example: published
+            vidoes:
+              type: array
+              items:
+                type: string
+              example: ['https://awa.s3.amazonaws.com/2309dfs9fj4324dfd334.mp4']
+            publishedAt:
+              type: string
+              format: date-time
+              example: 2021-09-01T12:00:00.000Z
+          required:
+            [
+              _id,
+              post_id,
+              title,
+              body_html,
+              author_id,
+              vendor_id,
+              tags,
+              status,
+              vidoes,
+              publishedAt,
+            ]
+        - $ref: '#/components/schemas/Timestamp'
+    Cart:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            customer_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  product_id:
+                    type: string
+                    example: 2309dfs9fj4324dfd334
+                  quantity:
+                    type: number
+                    format: int32
+                    example: 2
+                  total:
+                    type: number
+                    format: int32
+                    example: 180
+                  option:
+                    type: object
+                    properties:
+                      size:
+                        type: string
+                        example: M
+                      color:
+                        type: string
+                        example: Red
+                    required: [size, color]
+            total:
+              type: number
+              format: int32
+              example: 1324
+          required: [_id, customer_id, items, total]
+        - $ref: '#/components/schemas/Timestamp'
+    Category:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            name:
+              type: string
+              example: Electronics
+            subcategory:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Mobile
+                  parentCategoryId:
+                    type: string
+                    example: 2309dfs9fj4324dfd334
+                  status:
+                    type: string
+                    enum: [active, inactive]
+                    example: active
+                required: [name, parentCategoryId, status]
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+          required: [_id, name, subcategory, status]
+        - $ref: '#/components/schemas/Timestamp'
+    Collection:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            name:
+              type: string
+              example: Summer Collection
+            products:
+              type: array
+              items:
+                type: string
+                example: 2309dfs9fj4324dfd334
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+          required: [_id, name, products, status]
+        - $ref: '#/components/schemas/Timestamp'
+    Comment:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            blog_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            author_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            body:
+              type: string
+              example: This is a comment
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+          required: [_id, blog_id, author_id, body, status]
+        - $ref: '#/components/schemas/Timestamp'
+    Coupon:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            code:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            discount:
+              type: number
+              format: int32
+              example: 20
+            startAt:
+              type: string
+              format: date-time
+              example: 2021-09-01T12:00:00.000Z
+            endAt:
+              type: string
+              format: date-time
+              example: 2021-09-01T12:00:00.000Z
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+            usageLimit:
+              type: number
+              format: int32
+              example: 10
+            description:
+              type: string
+              example: This is a coupon for summer.
+          required: [_id, code, discount, startAt, endAt, status, usageLimit]
+        - $ref: '#/components/schemas/Timestamp'
+    Customer:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            name:
+              type: string
+              example: John Doe
+            email:
+              type: string
+              format: email
+              example: customermail@email.com
+            photo:
+              type: string
+              example: https://awa.s3.amazonaws.com/2309dfs9fj4324dfd334.jpg
+            password:
+              type: string
+              example: 3459&*$#JFJ
+            varified_email:
+              type: boolean
+              example: true
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+            addresses:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 2309dfs9fj4324dfd334
+                  address1:
+                    type: string
+                    example: 1234, ABC Street
+                  address2:
+                    type: string
+                    example: 1234, XYZ Street
+                  city:
+                    type: string
+                    example: Dhaka
+                  district:
+                    type: string
+                    example: Dhaka
+                  zip:
+                    type: string
+                    example: 1200
+                  phone:
+                    type: string
+                    example: 1234567890
+                  type:
+                    type: string
+                    enum: [home, shipping]
+                    example: home
+                required: [address1, city, district, zip, phone, type]
+            last_order_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            note:
+              type: array
+              items:
+                type: string
+              example: ['This is a note', 'Frequency of purchase is high']
+            orders_count:
+              type: number
+              format: int32
+              example: 10
+            points:
+              type: number
+              format: int32
+              example: 100
+            pointsAmount:
+              type: number
+              format: int32
+              example: 1000
+            tags:
+              type: array
+              items:
+                type: string
+              example: ['tag1', 'tag2']
+            total_spent:
+              type: number
+              format: int32
+              example: 10000
+          required:
+            [
+              _id,
+              name,
+              email,
+              photo,
+              password,
+              varified_email,
+              status,
+              addresses,
+              last_order_id,
+              note,
+              orders_count,
+              points,
+              pointsAmount,
+              tags,
+              total_spent,
+            ]
+        - $ref: '#/components/schemas/Timestamp'
+    Discount:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            type:
+              type: string
+              enum: [percentage, fixed, buy_one_get_one, free_shipping, coupon]
+              example: buy_one_get_one
+            discount:
+              type: number
+              format: int32
+              example: 20
+            startAt:
+              type: string
+              format: date-time
+              example: 2021-09-01T12:00:00.000Z
+            endAt:
+              type: string
+              format: date-time
+              example: 2021-09-01T12:00:00.000Z
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+            usageLimit:
+              type: number
+              format: int32
+              example: 10
+            min_purchase:
+              type: number
+              format: int32
+              example: 100
+            description:
+              type: string
+              example: This is a discount for summer.
+          required: [_id, type, discount, startAt, endAt, status]
+        - $ref: '#/components/schemas/Timestamp'
+    Order:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            customer_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            name:
+              type: string
+              example: John Doe
+            email:
+              type: string
+              format: email
+              example: customeremail@gmail.com
+            phone:
+              type: string
+              example: 1234567890
+            billing_address:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 2309dfs9fj4324dfd334
+                name:
+                  type: string
+                  example: John Doe
+                phone:
+                  type: string
+                  example: 1234567890
+                email:
+                  type: string
+                  format: email
+                  example: email@gmail.com
+                address1:
+                  type: string
+                  example: 1234, ABC Street
+                address2:
+                  type: string
+                  example: 1234, XYZ Street
+                city:
+                  type: string
+                  example: Dhaka
+                district:
+                  type: string
+                  example: Dhaka
+                zip:
+                  type: string
+                  example: 1200
+                type:
+                  type: string
+                  enum: [home, shipping]
+                  example: home
+              required:
+                [name, phone, email, address1, city, district, zip, type]
+            shipping_address:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 2309dfs9fj4324dfd334
+                name:
+                  type: string
+                  example: John Doe
+                phone:
+                  type: string
+                  example: 1234567890
+                email:
+                  type: string
+                  format: email
+                  example: email@gmail.com
+                address1:
+                  type: string
+                  example: 1234, ABC Street
+                address2:
+                  type: string
+                  example: 1234, XYZ Street
+                city:
+                  type: string
+                  example: Dhaka
+                district:
+                  type: string
+                  example: Dhaka
+                zip:
+                  type: string
+                  example: 1200
+                type:
+                  type: string
+                  enum: [home, shipping]
+                  example: home
+              required:
+                [name, phone, email, address1, city, district, zip, type]
+            line_items:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 2309dfs9fj4324dfd334
+                  product_id:
+                    type: string
+                    example: 2309dfs9fj4324dfd334
+                  variant_id:
+                    type: string
+                    example: 2309dfs9fj4324dfd334
+                  title:
+                    type: string
+                    example: Product Title
+                  price:
+                    type: number
+                    format: int32
+                    example: 100
+                  quantity:
+                    type: number
+                    format: int32
+                    example: 2
+                  total:
+                    type: number
+                    format: int32
+                    example: 200
+                  size:
+                    type: string
+                    example: M
+                  color:
+                    type: string
+                    example: Red
+                  sku:
+                    type: string
+                    example: 2309dfs9fj4324dfd334
+                  image:
+                    type: string
+                    example: https://awa.s3.amazonaws.com/2309dfs9fj4324dfd334.jpg
+                  discount:
+                    type: number
+                    format: int32
+                    example: 20
+                required:
+                  [
+                    _id,
+                    product_id,
+                    variant_id,
+                    title,
+                    price,
+                    quantity,
+                    total,
+                    size,
+                    color,
+                    sku,
+                    image,
+                    discount,
+                  ]
+            total_price:
+              type: number
+              format: int32
+              example: 200
+            total_discount:
+              type: number
+              format: int32
+              example: 20
+            payment_gateway:
+              type: string
+              enum: [cod, card, bkash, rocket, nagad]
+              example: cod
+            cancel_reason:
+              type: string
+              example: Customer changed mind
+            order_number:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            fullfillment_by:
+              type: string
+              enum: [gsmart, vendor]
+              example: vendor
+            tags:
+              type: array
+              items:
+                type: string
+              example: ['tag1', 'tag2']
+            notes:
+              type: array
+              items:
+                type: string
+              example: ['note1', 'note2']
+            status:
+              type: string
+              enum:
+                [
+                  pending,
+                  confirmed,
+                  shipped,
+                  delivered,
+                  cancelled,
+                  refunded,
+                  returned,
+                  disputed,
+                  onhold,
+                ]
+              example: pending
+          required:
+            [
+              _id,
+              customer_id,
+              name,
+              email,
+              phone,
+              billing_address,
+              shipping_address,
+              line_items,
+              total_price,
+              total_discount,
+              payment_gateway,
+              order_number,
+              fullfillment_by,
+              tags,
+              notes,
+              status,
+            ]
+        - $ref: '#/components/schemas/Timestamp'
+    Reels:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            vendor_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            title:
+              type: string
+              example: Summer Collection
+            reelLink:
+              type: string
+              format: uri
+              example: https://awa.s3.amazonaws.com/2309
+            likes:
+              type: number
+              format: int32
+              example: 100
+            tags:
+              type: array
+              items:
+                type: string
+              example: ['tag1', 'tag2']
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+          required: [_id, vendor_id, title, reelLink, likes, tags, status]
+        - $ref: '#/components/schemas/Timestamp'
+    Review:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            review_type:
+              type: string
+              enum: [product, vendor]
+              example: product
+            type_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            customer_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            rating:
+              type: number
+              format: int32
+              example: 5
+            text:
+              type: string
+              example: This is a review
+          required: [_id, review_type, type_id, customer_id, rating, text]
+        - $ref: '#/components/schemas/Timestamp'
+    Transaction:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            customer_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            order_id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            amount:
+              type: number
+              format: int32
+              example: 100
+            payment_gateway:
+              type: string
+              enum: [cod, card, bkash, rocket, nagad]
+              example: cod
+            payment_gateway_details:
+              type: object
+              properties:
+                transaction_id:
+                  type: string
+                  example: 2309dfs9fj4324dfd334
+                payment_id:
+                  type: string
+                  example: 2309dfs9fj4324dfd334
+              required: [transaction_id, payment_id]
+            status:
+              type: string
+              enum: [pending, success, failed]
+              example: success
+            note:
+              type: string
+              example: This is a transaction
+          required:
+            [
+              _id,
+              customer_id,
+              order_id,
+              amount,
+              payment_gateway,
+              payment_gateway_details,
+              status,
+            ]
+        - $ref: '#/components/schemas/Timestamp'
+    Timestamp:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required: [createdAt, updatedAt]
+    Merchant:
+      allOf:
+        - type: object
+          properties:
+            _id:
+              type: string
+              example: 2309dfs9fj4324dfd334
+            name:
+              type: string
+              example: John Doe
+            email:
+              type: string
+              format: email
+              example: vendoremail@gmail.com
+            password:
+              type: string
+              example: 3459&*$#JFJ
+            phone:
+              type: string
+              example: 1234567890
+            photo:
+              type: string
+              example: https://awa.s3.amazonaws.com/2309dfs9fj4324dfd334.jpg
+            status:
+              type: string
+              enum: [active, inactive]
+              example: active
+            rating:
+              type: number
+              format: int32
+              example: 5
+            products:
+              type: array
+              items:
+                type: string
+              example: ['2309dfs9fj4324dfd334']
+            address: {}
+            website:
+              type: string
+              example: https://awa.com
+            description:
+              type: string
+              example: This is a vendor
+            social_links:
+              type: object
+              properties:
+                facebook:
+                  type: string
+                  format: uri
+                  example: https://facebook.com/awa
+                twitter:
+                  type: string
+                  example: https://twitter.com/awa
+                instagram:
+                  type: string
+                  example: https://instagram.com/awa
+                linkedin:
+                  type: string
+                  example: https://linkedin.com/awa
+                youtube:
+                  type: string
+                  example: https://youtube.com/awa
+              required: [facebook]
+            tags:
+              type: array
+              items:
+                type: string
+              example: ['tag1', 'tag2']
+            notes:
+              type: array
+              items:
+                type: string
+              example: ['note1', 'note2']
+            verification_info:
+              type: object
+              properties:
+                national_id:
+                  type: string
+                  example: 2309dfs9fj4324dfd334
+                business_license:
+                  type: string
+                  example: 2309dfs9fj4324dfd334
+                trade_license:
+                  type: string
+                  example: 2309dfs9fj4324dfd334
+              required: [national_id, business_license, trade_license]
+            reviews:
+              type: array
+              items:
+                type: string
+              example: ['2309dfs9fj4324dfd334']
+          required:
+            [
+              _id,
+              name,
+              email,
+              password,
+              phone,
+              photo,
+              status,
+              rating,
+              products,
+              address,
+              website,
+              description,
+              social_links,
+              tags,
+              notes,
+              verification_info,
+              reviews,
+            ]
+        - $ref: '#/components/schemas/Timestamp'
+  responses:
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Bad request
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Unauthorized
+    '404':
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Not found
+    '500':
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Internal server error
+
+  parameters: {}

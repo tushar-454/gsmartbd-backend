@@ -1,13 +1,12 @@
 let connectionURI = process.env.DB_CONNECTION_URI;
-const db_username = process.env.DB_USERNAME;
-const db_password = process.env.DB_PASSWORD;
-connectionURI = connectionURI.replace('<username>', db_username);
-connectionURI = connectionURI.replace('<db_password>', db_password);
-const environment = process.env.NODE_ENV || 'dev';
-
-const radis_host = process.env.REDIS_HOST;
-const radis_port = process.env.REDIS_PORT;
-const radis_password = process.env.REDIS_PASSWORD;
+const dbUsername = process.env.DB_USERNAME;
+const dbPassword = process.env.DB_PASSWORD;
+connectionURI = connectionURI.replace('<username>', dbUsername);
+connectionURI = connectionURI.replace('<db_password>', dbPassword);
+const radisHost = process.env.REDIS_HOST;
+const radisPort = process.env.REDIS_PORT;
+const radisPassword = process.env.REDIS_PASSWORD;
+const environment = process.env.NODE_ENV;
 
 module.exports = {
   mongodb: {
@@ -27,9 +26,9 @@ module.exports = {
       password: '',
     },
     prod: {
-      host: radis_host,
-      port: radis_port,
-      password: radis_password,
+      host: radisHost,
+      port: radisPort,
+      password: radisPassword,
     },
     environment,
   },

@@ -7,7 +7,7 @@ const { connectRedis } = require('./config/redis');
 const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 
-const main = async () => {
+(async () => {
   try {
     await connectDB();
     await connectRedis();
@@ -17,6 +17,4 @@ const main = async () => {
   } catch (error) {
     console.log('Database Error', error);
   }
-};
-
-main();
+})();
