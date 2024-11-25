@@ -423,6 +423,7 @@ paths:
                         type: string
                         description: Phone of the customer
                         example: 01712345678
+
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -1406,189 +1407,1258 @@ paths:
     get:
       tags:
         - Admin
+      security:
+        - bearerAuth: []
       summary: Get a merchant by id
       description: Get a merchant by id
-      parameters: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the merchant
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Merchant found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Merchant found successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the merchant
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the merchant
+                        example: Mini store
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the merchant
+                        example: merchant@gmail.com
+                      phone:
+                        type: string
+                        description: Phone of the merchant
+                        example: 01712345678
+                      status:
+                        type: string
+                        description: Status of the merchant
+                        example: disabled
+                      merchantId:
+                        type: string
+                        description: Merchant id of the merchant
+                        example: GSBD-3043
+                      products:
+                        type: array
+                        description: Products of the merchant
+                        items:
+                          type: object
+                          properties:
+                            _id:
+                              type: string
+                              description: Id of the product
+                              example: 612f7b3b7b3b3b3b3b3b3b3b
+                            name:
+                              type: string
+                              description: Name of the product
+                              example: Product 1
+                      address:
+                        type: object
+                        description: Address of the merchant
+                        properties:
+                          district:
+                            type: string
+                            description: District of the merchant
+                            example: Dhaka
+                          address1:
+                            type: string
+                            description: Street of the merchant
+                            example: 123, ABC street
+                          address2:
+                            type: string
+                            description: Street of the merchant
+                            example: 123, ABC street
+                      website:
+                        type: string
+                        description: Website of the merchant
+                        example: www.merchant.com
+                      description:
+                        type: string
+                        description: Description of the merchant
+                        example: This is a merchant
+                      logo:
+                        type: string
+                        description: Logo of the merchant
+                        example: logo.png
+                      social_media:
+                        type: object
+                        description: Social media of the merchant
+                        properties:
+                          facebook:
+                            type: string
+                            description: Facebook link of the merchant
+                            example: www.facebook.com/merchant
+                      tags:
+                        type: array
+                        description: Tags of the merchant
+                        items:
+                          type: string
+                          example: 'tag1'
+                      notes:
+                        type: array
+                        description: Notes of the merchant
+                        items:
+                          type: string
+                          example: 'note1'
+                      verification_info:
+                        type: object
+                        description: Verification info of the merchant
+                        properties:
+                          national_id:
+                            type: string
+                            description: National id of the merchant
+                            example: 1234567890123456
+                          business_license:
+                            type: string
+                            description: Business license of the merchant
+                            example: 1234567890123456
+                          trade_license:
+                            type: string
+                            description: Trade license of the merchant
+                            example: 1234567890123456
+
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     put:
       tags:
         - Admin
+      security:
+        - bearerAuth: []
       summary: Update a merchant by id
       description: Update a merchant by id
-      parameters: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the merchant
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       requestBody:
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the merchant
+                  example: Mini store
+                email:
+                  type: string
+                  format: email
+                  description: Email of the merchant
+                  example: merchant@gmail.com
+                phone:
+                  type: string
+                  description: Phone of the merchant
+                  example: 01712345678
+                status:
+                  type: string
+                  description: Status of the merchant
+                  example: disabled
+                merchantId:
+                  type: string
+                  description: Merchant id of the merchant
+                  example: GSBD-3043
+                products:
+                  type: array
+                  description: Products of the merchant
+                  items:
+                    type: string
+                    description: Id of the product
+                    example: 612f7b3b7b3b3b3b3b3b3b3b
+                address:
+                  type: object
+                  description: Address of the merchant
+                  properties:
+                    district:
+                      type: string
+                      description: District of the merchant
+                      example: Dhaka
+                    address1:
+                      type: string
+                      description: Street of the merchant
+                      example: 123, ABC street
+                    address2:
+                      type: string
+                      description: Street of the merchant
+                      example: 123, ABC street
+                website:
+                  type: string
+                  description: Website of the merchant
+                  example: www.merchant.com
+                description:
+                  type: string
+                  description: Description of the merchant
+                  example: This is a merchant
+                logo:
+                  type: string
+                  description: Logo of the merchant
+                  example: logo.png
+                social_media:
+                  type: object
+                  description: Social media of the merchant
+                  properties:
+                    facebook:
+                      type: string
+                      description: Facebook link of the merchant
+                      example: www.facebook.com/merchant
+                tags:
+                  type: array
+                  description: Tags of the merchant
+                  items:
+                    type: string
+                    example: 'tag1'
+                notes:
+                  type: array
+                  description: Notes of the merchant
+                  items:
+                    type: string
+                    example: 'note1'
+                verification_info:
+                  type: object
+                  description: Verification info of the merchant
+                  properties:
+                    national_id:
+                      type: string
+                      description: National id of the merchant
+                      example: 1234567890123456
+                    business_license:
+                      type: string
+                      description: Business license of the merchant
+                      example: 1234567890123456
+                    trade_license:
+                      type: string
+                      description: Trade license of the merchant
+                      example: 1234567890123456
+              required:
+                [
+                  'name',
+                  'email',
+                  'phone',
+                  'status',
+                  'merchantId',
+                  'products',
+                  'address',
+                  'website',
+                  'description',
+                  'logo',
+                  'social_media',
+                  'tags',
+                  'notes',
+                  'verification_info',
+                ]
+
       responses:
+        '200':
+          description: Merchant updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    description: Id of the merchant
+                    example: 612f7b3b7b3b3b3b3b3b3b3b
+                  name:
+                    type: string
+                    description: Name of the merchant
+                    example: Mini store
+                  email:
+                    type: string
+                    format: email
+                    description: Email of the merchant
+                    example: merchant@gmail.com
+                  phone:
+                    type: string
+                    description: Phone of the merchant
+                    example: 01712345678
+                  status:
+                    type: string
+                    description: Status of the merchant
+                    example: disabled
+                  merchantId:
+                    type: string
+                    description: Merchant id of the merchant
+                    example: GSBD-3043
+                  products:
+                    type: array
+                    description: Products of the merchant
+                    items:
+                      type: string
+                      description: Id of the product
+                      example: 612f7b3b7b3b3b3b3b3b3b3b
+                  address:
+                    type: object
+                    description: Address of the merchant
+                    properties:
+                      district:
+                        type: string
+                        description: District of the merchant
+                        example: Dhaka
+                      address1:
+                        type: string
+                        description: Street of the merchant
+                        example: 123, ABC street
+                      address2:
+                        type: string
+                        description: Street of the merchant
+                        example: 123, ABC street
+                  website:
+                    type: string
+                    description: Website of the merchant
+                    example: www.merchant.com
+                  description:
+                    type: string
+                    description: Description of the merchant
+                    example: This is a merchant
+                  logo:
+                    type: string
+                    description: Logo of the merchant
+                    example: logo.png
+                  social_media:
+                    type: object
+                    description: Social media of the merchant
+                    properties:
+                      facebook:
+                        type: string
+                        description: Facebook link of the merchant
+                        example: www.facebook.com/merchant
+                  tags:
+                    type: array
+                    description: Tags of the merchant
+                    items:
+                      type: string
+                      example: 'tag1'
+                  notes:
+                    type: array
+                    description: Notes of the merchant
+                    items:
+                      type: string
+                      example: 'note1'
+                  verification_info:
+                    type: object
+                    description: Verification info of the merchant
+                    properties:
+                      national_id:
+                        type: string
+                        description: National id of the merchant
+                        example: 1234567890123456
+                      business_license:
+                        type: string
+                        description: Business license of the merchant
+                        example: 1234567890123456
+                      trade_license:
+                        type: string
+                        description: Trade license of the merchant
+                        example: 1234567890123456
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     delete:
       tags:
         - Admin
+      security:
+        - bearerAuth: []
       summary: Delete a merchant by id
       description: Delete a merchant by id
-      parameters: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the merchant
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Merchant deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Merchant deleted successfully
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
-  '/admin/merchants/:id/status':
-    patch:
-      tags:
-        - Admin
-      summary: Get all products of a merchant
-      description: Get all products of a merchant
-      parameters: []
-      responses:
-        '400':
-          $ref: '#/components/responses/400'
-        '500':
-          $ref: '#/components/responses/500'
-
   '/admin/customers':
     get:
       tags:
         - Admin
-      summary: Get all merchants
-      description: Get all merchants
+      security:
+        - bearerAuth: []
+      summary: Get all customer account
+      description: Get all customer account
       responses:
-        '400':
-          $ref: '#/components/responses/400'
+        '200':
+          description: Customers found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customers found successfully
+                  data:
+                    type: array
+                    description: Data of the response
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          description: Id of the customer
+                          example: 612f7b3b7b3b3b3b3b3b3b3b
+                        name:
+                          type: string
+                          description: Name of the customer
+                          example: Customer 1
+                        email:
+                          type: string
+                          format: email
+                          description: Email of the customer
+                          example: customer@gmail.com
+                        phone:
+                          type: string
+                          description: Phone of the customer
+                          example: 01712345678
+                        status:
+                          type: string
+                          description: Status of the customer
+                          example: active
+                        orders_count:
+                          type: number
+                          description: Orders count of the customer
+                          example: 10
+                        points:
+                          type: number
+                          description: Points of the customer
+                          example: 100
+                        pointsAmount:
+                          type: number
+                          description: Points amount of the customer
+                          example: 1000
+                        totalSpent:
+                          type: number
+                          description: Total spent of the customer
+                          example: 10000
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     post:
       tags:
         - Admin
-      summary: Create a new merchant
-      description: Create a new merchant
+      security:
+        - bearerAuth: []
+      summary: Create a new customer account
+      description: Create a new customer account
       requestBody:
-        content: {}
+        description: Customer account creation request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the customer
+                  example: Customer 1
+                email:
+                  type: string
+                  format: email
+                  description: Email of the customer
+                  example: customer@gmail.com
+                phone:
+                  type: string
+                  description: Phone of the customer
+                  example: 01712345678
+                password:
+                  type: string
+                  description: Password of the customer
+                  example: password
       responses:
+        '201':
+          description: Customer registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 201
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customer registered successfully
+                  data:
+                    type: object
+                    description: Data of the customer account creation response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the customer
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the customer
+                        example: John Doe
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the customer
+                        example: customer@gmail.com
+                      phone:
+                        type: string
+                        description: Phone of the customer
+                        example: 01712345678
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
         '500':
           $ref: '#/components/responses/500'
   '/admin/customers/{id}':
     get:
       tags:
         - Admin
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Get a customer by id
+      description: Get a customer by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the customer
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Customer found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customer found successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the customer
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the customer
+                        example: John Doe
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the customer
+                        example: customer@gmail.com
+                      phone:
+                        type: string
+                        description: Phone of the customer
+                        example: 01712345678
+                      status:
+                        type: string
+                        description: Status of the customer
+                        example: active
+                      addresses:
+                        type: array
+                        description: Addresses of the customer
+                        items:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              description: Address of the address
+                              example: 123, ABC street
+                            address2:
+                              type: string
+                              description: Address of the address
+                              example: 123, ABC street
+                            city:
+                              type: string
+                              description: City of the address
+                              example: Dhaka
+                            district:
+                              type: string
+                              description: District of the address
+                              example: Dhaka
+                            zip:
+                              type: string
+                              description: Zip of the address
+                              example: 1205
+                            type:
+                              type: string
+                              description: Type of the address
+                              example: shipping
+                      lastOrderId:
+                        type: string
+                        description: Last order id of the customer
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      lastOrderName:
+                        type: string
+                        description: Last order name of the customer
+                        example: Order 1
+                      notes:
+                        type: array
+                        description: Notes of the customer
+                        items:
+                          type: string
+                          example: 'note1'
+                      orderCount:
+                        type: number
+                        description: Order count of the customer
+                        example: 10
+                      points:
+                        type: number
+                        description: Points of the customer
+                        example: 100
+                      pointsAmount:
+                        type: number
+                        description: Points amount of the customer
+                        example: 1000
+                      tags:
+                        type: array
+                        description: Tags of the customer
+                        items:
+                          type: string
+                          example: 'tag1'
+                      totalSpent:
+                        type: number
+                        description: Total spent of the customer
+                        example: 10000
+
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     put:
       tags:
         - Admin
-      summary: Update a merchant by id
-      description: Update a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Update a customer by id
+      description: Update a customer by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the customer
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       requestBody:
-        content: {}
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the customer
+                  example: John Doe
+                email:
+                  type: string
+                  format: email
+                  description: Email of the customer
+                  example: customer@gmail.com
+                password:
+                  type: string
+                  description: Password of the customer
+                  example: password
+                phone:
+                  type: string
+                  description: Phone of the customer
+                  example: 01712345678
+                status:
+                  type: string
+                  description: Status of the customer
+                  example: active
+                addresses:
+                  type: array
+                  description: Addresses of the customer
+                  items:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        description: Address of the address
+                        example: 123, ABC street
+                      address2:
+                        type: string
+                        description: Address of the address
+                        example: 123, ABC street
+                      city:
+                        type: string
+                        description: City of the address
+                        example: Dhaka
+                      district:
+                        type: string
+                        description: District of the address
+                        example: Dhaka
+                      zip:
+                        type: string
+                        description: Zip of the address
+                        example: 1205
+                      type:
+                        type: string
+                        description: Type of the address
+                        example: shipping
+                lastOrderId:
+                  type: string
+                  description: Last order id of the customer
+                  example: 612f7b3b7b3b3b3b3b3b3b3b
+                lastOrderName:
+                  type: string
+                  description: Last order name of the customer
+                  example: Order 1
+                notes:
+                  type: array
+                  description: Notes of the customer
+                  items:
+                    type: string
+                    example: 'note1'
+                orderCount:
+                  type: number
+                  description: Order count of the customer
+                  example: 10
+                points:
+                  type: number
+                  description: Points of the customer
+                  example: 100
+                pointsAmount:
+                  type: number
+                  description: Points amount of the customer
+                  example: 1000
+                tags:
+                  type: array
+                  description: Tags of the customer
+                  items:
+                    type: string
+                    example: 'tag1'
+                totalSpent:
+                  type: number
+                  description: Total spent of the customer
+                  example: 10000
       responses:
+        '200':
+          description: Customer update successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customer update successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the customer
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      name:
+                        type: string
+                        description: Name of the customer
+                        example: John Doe
+                      email:
+                        type: string
+                        format: email
+                        description: Email of the customer
+                        example: customer@gmail.com
+                      phone:
+                        type: string
+                        description: Phone of the customer
+                        example: 01712345678
+                      status:
+                        type: string
+                        description: Status of the customer
+                        example: active
+                      addresses:
+                        type: array
+                        description: Addresses of the customer
+                        items:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              description: Address of the address
+                              example: 123, ABC street
+                            address2:
+                              type: string
+                              description: Address of the address
+                              example: 123, ABC street
+                            city:
+                              type: string
+                              description: City of the address
+                              example: Dhaka
+                            district:
+                              type: string
+                              description: District of the address
+                              example: Dhaka
+                            zip:
+                              type: string
+                              description: Zip of the address
+                              example: 1205
+                            type:
+                              type: string
+                              description: Type of the address
+                              example: shipping
+                      lastOrderId:
+                        type: string
+                        description: Last order id of the customer
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      lastOrderName:
+                        type: string
+                        description: Last order name of the customer
+                        example: Order 1
+                      notes:
+                        type: array
+                        description: Notes of the customer
+                        items:
+                          type: string
+                          example: 'note1'
+                      orderCount:
+                        type: number
+                        description: Order count of the customer
+                        example: 10
+                      points:
+                        type: number
+                        description: Points of the customer
+                        example: 100
+                      pointsAmount:
+                        type: number
+                        description: Points amount of the customer
+                        example: 1000
+                      tags:
+                        type: array
+                        description: Tags of the customer
+                        items:
+                          type: string
+                          example: 'tag1'
+                      totalSpent:
+                        type: number
+                        description: Total spent of the customer
+                        example: 10000
+
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     delete:
       tags:
         - Admin
-      summary: Delete a merchant by id
-      description: Delete a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Delete a customer by id
+      description: Delete a customer by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the customer
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Customer deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customer deleted successfully
         '400':
           $ref: '#/components/responses/400'
-        '500':
-          $ref: '#/components/responses/500'
-  '/admin/customers/:id/status':
-    patch:
-      tags:
-        - Admin
-      summary: Get all products of a merchant
-      description: Get all products of a merchant
-      parameters: []
-      responses:
-        '400':
-          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
 
-  '/admin/bulk-action/merchant':
-    post:
-      tags:
-        - Admin
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
-      responses:
-        '400':
-          $ref: '#/components/responses/400'
-        '500':
-          $ref: '#/components/responses/500'
+  '/admin/bulk-action/merchants':
     put:
       tags:
         - Admin
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Update merchants by ids
+      description: Update merchants status for disabled/inactive/softdelete by ids
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: Ids of the merchants
+                  items:
+                    type: string
+                  example:
+                    ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
+                status:
+                  type: string
+                  description: Status of the merchants
+                  enum: ['active', 'inactive', 'delete']
+                  example: disabled
+              required: ['ids', 'status']
       responses:
+        '200':
+          description: Merchants updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Merchants updated successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      updatedIds:
+                        type: array
+                        description: Updated ids of the merchants
+                        items:
+                          type: string
+                          example: '612f7b3b7b3b3b3b3b3b3b3b'
+                      notFoundIds:
+                        type: array
+                        description: Not found ids of the merchants
+                        items:
+                          type: string
+                          example: '612f7b3b7b3b3b3b3b3b3b3b'
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     delete:
       tags:
         - Admin
-      summary: Delete a merchant by id
-      description: Delete a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Delete merchants by ids
+      description: Delete merchants by ids
+      requestBody:
+        description: Merchant delete request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: Ids of the merchants
+                  items:
+                    type: string
+                  example:
+                    ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
+              required: ['ids']
       responses:
-        '400':
-          $ref: '#/components/responses/400'
+        '200':
+          description: Merchants deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Merchants deleted successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      deletedIds:
+                        type: array
+                        description: Deleted ids of the merchants
+                        items:
+                          type: string
+                          example: '612f7b3b7b3b3b3b3b3b3b3b'
+                      notFoundIds:
+                        type: array
+                        description: Not found ids of the merchants
+                        items:
+                          type: string
+                          example: '612f7b3b7b3b3b3b3b3b3b3b'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
-  '/admin/bulk-action/customer':
-    post:
-      tags:
-        - Admin
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
-      responses:
-        '400':
-          $ref: '#/components/responses/400'
-        '500':
-          $ref: '#/components/responses/500'
+  '/admin/bulk-action/customers':
     put:
       tags:
         - Admin
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Get customers by ids
+      description: Get customers by ids
+      requestBody:
+        description: Customer get request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: Ids of the customers
+                  items:
+                    type: string
+                  example:
+                    ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
+                status:
+                  type: string
+                  description: Status of the customers
+                  enum: ['active', 'inactive', 'delete']
+                  example: disabled
+              required: ['ids', status]
       responses:
+        '200':
+          description: Customers update successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customers updated successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      updatedIds:
+                        type: array
+                        description: Updated ids of the customers
+                        items:
+                          type: string
+                          example: '612f7b3b7b3b3b3b3b3b3b3b'
+                      notFoundIds:
+                        type: array
+                        description: Not found ids of the customers
+                        items:
+                          type: string
+                          example: '612f7b3b7b3b3b3b3b3b3b3b'
+
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     delete:
       tags:
         - Admin
-      summary: Delete a merchant by id
-      description: Delete a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Delete customers by ids
+      description: Delete customers by ids
+      requestBody:
+        description: Customer delete request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: Ids of the customers
+                  items:
+                    type: string
+                  example:
+                    ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
+              required: ['ids']
       responses:
-        '400':
-          $ref: '#/components/responses/400'
+        '200':
+          description: Customers deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Customers deleted successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      deletedIds:
+                        type: array
+                        description: Deleted ids of the customers
+                        items:
+                          type: string
+                          example: '612f7b3b7b3b3b3b3b3b3b3b'
+                      notFoundIds:
+                        type: array
+                        description: Not found ids of the customers
+                        items:
+                          type: string
+                          example: '612f7b3b7b3b3b3b3b3b3b3b'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
 
@@ -1597,57 +2667,559 @@ paths:
     get:
       tags:
         - Blog
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Get all blogs admin
+      description: Get all blogs admin
       responses:
-        '400':
-          $ref: '#/components/responses/400'
+        '200':
+          description: Blogs found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Blogs found successfully
+                  data:
+                    type: array
+                    description: Data of the response
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          description: Id of the blog
+                          example: 612f7b3b7b3b3b3b3b3b3b3b
+                        title:
+                          type: string
+                          description: Title of the blog
+                          example: Blog 1
+                        bodyHtml:
+                          type: string
+                          description: Description of the blog
+                          example: <h1>This is a blog</h1>
+                        tags:
+                          type: array
+                          description: Tags of the blog
+                          items:
+                            type: string
+                            example: 'tag1'
+                        author:
+                          type: object
+                          description: Author of the blog
+                          properties:
+                            name:
+                              type: string
+                              description: Name of the author
+                              example: John Doe
+                            email:
+                              type: string
+                              format: email
+                              description: Email of the author
+                              example: author@gmail.com
+                            bio:
+                              type: string
+                              description: Bio of the author
+                              example: This is a author
+                            socialMedia:
+                              type: object
+                              description: Social media of the author
+                              properties:
+                                facebook:
+                                  type: string
+                                  description: Facebook link of the author
+                                  example: www.facebook.com/author
+                            vendorId:
+                              type: string
+                              description: Vendor id of the author
+                              example: 612f7b3b7b3b3b3b3b3b3b3b
+                            status:
+                              type: string
+                              description: Status of the author
+                              example: active
+                            publishedAt:
+                              type: string
+                              description: Published at of the author
+                              example: 2021-09-01T00:00:00.000Z
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
         '500':
           $ref: '#/components/responses/500'
     post:
       tags:
         - Blog
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Create a new blog
+      description: Create a new blog
+      requestBody:
+        description: Blog creation request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Title of the blog
+                  example: Blog 1
+                bodyHtml:
+                  type: string
+                  description: Description of the blog
+                  example: <h1>This is a blog</h1>
+                tags:
+                  type: array
+                  description: Tags of the blog
+                  items:
+                    type: string
+                    example: 'tag1'
+                author:
+                  type: object
+                  description: Author of the blog
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the author
+                      example: John Doe
+                    email:
+                      type: string
+                      format: email
+                      description: Email of the author
+                      example: author@gmail.com
+                    bio:
+                      type: string
+                      description: Bio of the author
+                      example: This is a author
+                    socialMedia:
+                      type: object
+                      description: Social media of the author
+                      properties:
+                        facebook:
+                          type: string
+                          description: Facebook link of the author
+                          example: www.facebook.com/author
+                vendorId:
+                  type: string
+                  description: Vendor id of the author
+                  example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Blog created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Blog created successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the blog
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      title:
+                        type: string
+                        description: Title of the blog
+                        example: Blog 1
+                      bodyHtml:
+                        type: string
+                        description: Description of the blog
+                        example: <h1>This is a blog</h1>
+                      tags:
+                        type: array
+                        description: Tags of the blog
+                        items:
+                          type: string
+                          example: 'tag1'
+                      author:
+                        type: object
+                        description: Author of the blog
+                        properties:
+                          name:
+                            type: string
+                            description: Name of the author
+                            example: John Doe
+                          email:
+                            type: string
+                            format: email
+                            description: Email of the author
+                            example: author@gmail.com
+                          bio:
+                            type: string
+                            description: Bio of the author
+                            example: This is a author
+                          socialMedia:
+                            type: object
+                            description: Social media of the author
+                            properties:
+                              facebook:
+                                type: string
+                                description: Facebook link of the author
+                                example: www.facebook.com/author
+                      vendorId:
+                        type: string
+                        description: Vendor id of the author
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      status:
+                        type: string
+                        description: Status of the author
+                        example: active
+                      publishedAt:
+                        type: string
+                        description: Published at of the author
+                        example: 2021-09-01T00:00:00.000Z
+                    required:
+                      [
+                        'title',
+                        'bodyHtml',
+                        'tags',
+                        'author',
+                        'vendorId',
+                        'status',
+                        'publishedAt',
+                      ]
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
         '500':
           $ref: '#/components/responses/500'
   '/blogs/{id}':
     get:
       tags:
         - Blog
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Get a blog by id
+      description: Get a blog by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the blog
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Blog found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Blog found successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the blog
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      title:
+                        type: string
+                        description: Title of the blog
+                        example: Blog 1
+                      bodyHtml:
+                        type: string
+                        description: Description of the blog
+                        example: <h1>This is a blog</h1>
+                      author:
+                        type: object
+                        description: Author of the blog
+                        properties:
+                          name:
+                            type: string
+                            description: Name of the author
+                            example: John Doe
+                          email:
+                            type: string
+                            format: email
+                            description: Email of the author
+                            example: author@gmail.com
+                          bio:
+                            type: string
+                            description: Bio of the author
+                            example: This is a author
+                          socialMedia:
+                            type: object
+                            description: Social media of the author
+                            properties:
+                              facebook:
+                                type: string
+                                description: Facebook link of the author
+                                example: www.facebook.com/author
+                      vendorId:
+                        type: string
+                        description: Vendor id of the author
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      tags:
+                        type: array
+                        description: Tags of the blog
+                        items:
+                          type: string
+                          example: 'tag1'
+                      status:
+                        type: string
+                        description: Status of the author
+                        example: active
+                      videos:
+                        type: array
+                        description: Videos of the blog
+                        items:
+                          type: object
+                          properties:
+                            title:
+                              type: string
+                              description: Title of the video
+                              example: Video 1
+                            url:
+                              type: string
+                              description: Url of the video
+                              example: www.youtube.com/video1
+                      publishedAt:
+                        type: string
+                        description: Published at of the author
+                        example: 2021-09-01T00:00:00.000Z
+
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     put:
       tags:
         - Blog
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Update a blog by id
+      description: Update a blog by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the blog
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
+      requestBody:
+        description: Blog update request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Title of the blog
+                  example: Blog 1
+                bodyHtml:
+                  type: string
+                  description: Description of the blog
+                  example: <h1>This is a blog</h1>
+                author:
+                  type: object
+                  description: Author of the blog
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the author
+                      example: John Doe
+                    email:
+                      type: string
+                      format: email
+                      description: Email of the author
+                      example: author@gmail.com
+                    bio:
+                      type: string
+                      description: Bio of the author
+                      example: This is a author
+                    socialMedia:
+                      type: object
+                      description: Social media of the author
+                      properties:
+                        facebook:
+                          type: string
+                          description: Facebook link of the author
+                          example: www.facebook.com/author
+                tags:
+                  type: array
+                  description: Tags of the blog
+                  items:
+                    type: string
+                    example: 'tag1'
+                status:
+                  type: string
+                  description: Status of the author
+                  example: active
+                videos:
+                  type: array
+                  description: Videos of the blog
+                  items:
+                    type: string
+                    example: www.youtube.com/video1
+
       responses:
+        '200':
+          description: Blog updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Blog updated successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the blog
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      title:
+                        type: string
+                        description: Title of the blog
+                        example: Blog 1
+                      bodyHtml:
+                        type: string
+                        description: Description of the blog
+                        example: <h1>This is a blog</h1>
+                      author:
+                        type: object
+                        description: Author of the blog
+                        properties:
+                          name:
+                            type: string
+                            description: Name of the author
+                            example: John Doe
+                          email:
+                            type: string
+                            format: email
+                            description: Email of the author
+                            example: author@gmail.com
+                          bio:
+                            type: string
+                            description: Bio of the author
+                            example: This is a author
+                          socialMedia:
+                            type: object
+                            description: Social media of the author
+                            properties:
+                              facebook:
+                                type: string
+                                description: Facebook link of the author
+                                example: www.facebook.com/author
+                      tags:
+                        type: array
+                        description: Tags of the blog
+                        items:
+                          type: string
+                          example: 'tag1'
+                      status:
+                        type: string
+                        description: Status of the author
+                        example: active
+                      videos:
+                        type: array
+                        description: Videos of the blog
+                        items:
+                          type: string
+                          example: www.youtube.com/video1
+                      publishedAt:
+                        type: string
+                        description: Published at of the author
+                        example: 2021-09-01T00:00:00.000Z
         '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/400'
+        '404':
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
     delete:
       tags:
         - Blog
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: delete blog by id
+      description: delete blog by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id of the blog
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Blog deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Blog deleted successfully
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
 
