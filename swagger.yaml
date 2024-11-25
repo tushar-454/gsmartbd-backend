@@ -3228,58 +3228,377 @@ paths:
     post:
       tags:
         - Cart
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Create a new cart
+      description: Create a new cart customer only
+      requestBody:
+        description: Cart creation request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: User id of the cart
+                  example: 612f7b3b7b3b3b3b3b3b3b3b
+                items:
+                  type: array
+                  description: Items of the cart
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        description: Product id of the item
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      quantity:
+                        type: number
+                        description: Quantity of the item
+                        example: 1
+                      total:
+                        type: number
+                        description: Price of the item
+                        example: 100
+                      varient:
+                        type: number
+                        description: Varient of the item
+                        example: 1
       responses:
+        '200':
+          description: Cart created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Cart created successfully
+                  data:
+                    type: object
+                    description: Data of the response
+                    properties:
+                      _id:
+                        type: string
+                        description: Id of the cart
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      userId:
+                        type: string
+                        description: User id of the cart
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      items:
+                        type: array
+                        description: Items of the cart
+                        items:
+                          type: object
+                          properties:
+                            productId:
+                              type: object
+                              properties:
+                                _id:
+                                  type: string
+                                  description: Id of the product
+                                  example: 612f7b3b7b3b3b3b3b3b3b3b
+                                name:
+                                  type: string
+                                  description: Name of the product
+                                  example: Product 1
+                                price:
+                                  type: number
+                                  description: Price of the product
+                                  example: 100
+                                varients:
+                                  type: array
+                                  description: Varient of the product
+                                  items:
+                                    type: object
+                                    properties:
+                                      _id:
+                                        type: string
+                                        description: Id of the varient
+                                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                                      name:
+                                        type: string
+                                        description: Name of the varient
+                                        example: Varient 1
+                                      price:
+                                        type: number
+                                        description: Price of the varient
+                                        example: 100
+                            quantity:
+                              type: number
+                              description: Quantity of the item
+                              example: 1
+                            total:
+                              type: number
+                              description: Price of the item
+                              example: 100
+                            varient:
+                              type: number
+                              description: Varient of the item
+                              example: 1
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
   '/carts/{userId}':
     get:
       tags:
         - Cart
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Get carts by ids
+      description: Get carts by ids
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Id of the user
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Carts found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Carts found successfully
+                  data:
+                    type: array
+                    description: Data of the response
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          description: Id of the cart
+                          example: 612f7b3b7b3b3b3b3b3b3b3b
+                        userId:
+                          type: string
+                          description: User id of the cart
+                          example: 612f7b3b7b3b3b3b3b3b3b3b
+                        items:
+                          type: array
+                          description: Items of the cart
+                          items:
+                            type: object
+                            properties:
+                              productId:
+                                type: object
+                                properties:
+                                  _id:
+                                    type: string
+                                    description: Id of the product
+                                    example: 612f7b3b7b3b3b3b3b3b3b3b
+                                  name:
+                                    type: string
+                                    description: Name of the product
+                                    example: Product 1
+                                  price:
+                                    type: number
+                                    description: Price of the product
+                                    example: 100
+                                  varients:
+                                    type: array
+                                    description: Varient of the product
+                                    items:
+                                      type: object
+                                      properties:
+                                        _id:
+                                          type: string
+                                          description: Id of the varient
+                                          example: 612f7b3b7b3b3b3b3b3b3b3b
+                                        name:
+                                          type: string
+                                          description: Name of the varient
+                                          example: Varient 1
+                                        price:
+                                          type: number
+                                          description: Price of the varient
+                                          example: 100
+                              quantity:
+                                type: number
+                                description: Quantity of the item
+                                example: 1
+                              total:
+                                type: number
+                                description: Price of the item
+                                example: 100
+                              varient:
+                                type: number
+                                description: Varient of the item
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+  '/carts/{userId}/{cartId}':
     put:
       tags:
         - Cart
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Update user cart by id
+      description: Update user cart by id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Id of the user
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
+        - name: cartId
+          in: path
+          required: true
+          description: Id of the cart
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
+      requestBody:
+        description: Cart update request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  description: Items of the cart
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        description: Product id of the item
+                        example: 612f7b3b7b3b3b3b3b3b3b3b
+                      quantity:
+                        type: number
+                        description: Quantity of the item
+                        example: 1
+                      total:
+                        type: number
+                        description: Price of the item
+                        example: 100
+                      varient:
+                        type: number
+                        description: Varient of the item
+                        example: 1
       responses:
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
     delete:
       tags:
         - Cart
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Delete user cart by id
+      description: Delete user cart by id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Id of the user
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
+        - name: cartId
+          in: path
+          required: true
+          description: Id of the cart
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
+
   '/cart/{userId}/clear':
     delete:
       tags:
         - Cart
-      summary: Get a merchant by id
-      description: Get a merchant by id
-      parameters: []
+      security:
+        - bearerAuth: []
+      summary: Clear user cart by user id
+      description: Clear user cart by user id
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Id of the user
+          schema:
+            type: string
+          example: 612f7b3b7b3b3b3b3b3b3b3b
       responses:
+        '200':
+          description: Cart cleared successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    description: Status of the response
+                    example: 200
+                  message:
+                    type: string
+                    description: Message of the response
+                    example: Cart cleared successfully
         '400':
           $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
 
@@ -3954,6 +4273,10 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: session_id
 
   schemas:
     Admin:
