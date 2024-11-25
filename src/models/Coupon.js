@@ -1,32 +1,29 @@
 const { model, Schema } = require('mongoose');
 
-const adminSchema = new Schema(
+const couponSchema = new Schema(
   {
-    name: {
+    description: {
       type: String,
       required: true,
-      trim: true,
-      maxlength: 50,
     },
-    email: {
+    code: {
       type: String,
       required: true,
-      trim: true,
-      maxlength: 50,
       unique: true,
+      trim: true,
+      uppercase: true,
     },
-    password: {
-      type: String,
+    discount: {
+      type: Number,
       required: true,
     },
-    photo: {
-      type: String,
-    },
-    role: {
-      type: String,
+    startAt: {
+      type: Date,
       required: true,
-      enum: ['admin', 'superadmin'],
-      default: 'admin',
+    },
+    endAt: {
+      type: Date,
+      required: true,
     },
     status: {
       type: String,
@@ -34,13 +31,17 @@ const adminSchema = new Schema(
       enum: ['active', 'disabled'],
       default: 'active',
     },
-    lastLogin: {
-      type: Date,
+    usageLimit: {
+      type: Number,
       required: true,
-      default: Date.now,
+    },
+    usageCount: {
+      type: Number,
+      required: true,
+      default: 0,
     },
   },
   { timestamps: true }
 );
 
-module.exports = model('Admin', adminSchema);
+module.exports = model('Coupon', couponSchema);
