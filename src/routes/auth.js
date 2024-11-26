@@ -1,9 +1,8 @@
-const { adminRegister, adminLogin } = require('../api/v1/auth');
-const { loginValidation } = require('../api/v1/auth/validation');
-
 const router = require('express').Router();
+const { adminRegister, adminLogin } = require('../api/v1/auth');
+const { adminLoginValidation } = require('../api/v1/auth/validation');
 
-router.post('/admin/register', adminRegister);
-router.post('/admin/login', loginValidation, adminLogin);
+router.post('/superadmin/register', adminRegister);
+router.post('/admin/login', adminLoginValidation, adminLogin);
 
 module.exports = router;

@@ -1,12 +1,10 @@
-const createError = require('../../../../utils/createError');
-
 const adminLogin = async (req, res, next) => {
-  const { name, email } = req.body;
+  const { email, password } = req.body;
   try {
     res.status(200).json({
       status: 200,
       message: 'Login success',
-      user: { name, email },
+      user: { email, password },
     });
   } catch (error) {
     next(error);
