@@ -25,6 +25,12 @@ const collectionSchema = new Schema(
       enum: ['active', 'disabled', 'deleted'],
       default: 'active',
     },
+    theme: {
+      type: String,
+      required: true,
+      enum: ['grid', 'list'],
+      default: 'grid',
+    },
   },
   { timestamps: true }
 );
