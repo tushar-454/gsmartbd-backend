@@ -2,21 +2,22 @@ const { z } = require('zod');
 const formatZodErrors = require('../../../../utils/formatZodErrors');
 const { gmailRegex, alphanumericRegex } = require('../../../../constant');
 
-// admin login validation schema
-const loginSchema = z.object({
+const registrationSchema = z.object({
+  name: z.string().min(3, 'Name must be at least 3 characters').max(30, 'Name must be at most 30 characters'),
   email: z.string().email('Enter a valid email').regex(gmailRegex, 'Only gmail allowed'),
+  photo: z.string().url('Enter a valid URL'),
   password: z.string().min(6, 'Password must be at least 6 characters').regex(alphanumericRegex, 'Password must be alphanumeric and contain at least one letter and one number'),
 });
 
 // admin login validation middleware
-const loginValidation = (req, res, next) => {
+const adminRegistrationValidation = (req, res, next) => {
   try {
-    req.body = loginSchema.parse(req.body);
+    req.body = registrationSchema.parse(req.body);
     next();
   } catch (error) {
-    const result = loginSchema.safeParse(req.body);
+    const result = registrationSchema.safeParse(req.body);
     res.status(400).json({ status: 400, errors: formatZodErrors(result.error) });
   }
 };
 
-module.exports = loginValidation;
+module.exports = adminRegistrationValidation;
