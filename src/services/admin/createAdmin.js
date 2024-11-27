@@ -10,6 +10,7 @@ const createAdmin = async ({ name, email, password, photo, role = 'admin', statu
     status,
   });
   const newAdmin = await newAdminDoc.save();
+  if (!newAdmin) return null;
   return newAdmin._doc;
 };
 

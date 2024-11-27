@@ -11,6 +11,7 @@ const createCustomer = async ({ name, email, password, phone, photo, role = 'cus
     status,
   });
   const newCustomer = await newCustomerDoc.save();
+  if (!newCustomer) return null;
   return newCustomer._doc;
 };
 

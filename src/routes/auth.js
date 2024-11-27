@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { adminRegister, adminLogin } = require('../api/v1/auth');
 const customerLogin = require('../api/v1/auth/controllers/customerLogin');
 const customerRegister = require('../api/v1/auth/controllers/customerRegister');
+const logoutUser = require('../api/v1/auth/controllers/logoutUser');
 const merchantLogin = require('../api/v1/auth/controllers/merchantLogin');
 const merchantRegister = require('../api/v1/auth/controllers/merchantRegister');
 const { adminLoginValidation, adminRegistrationValidation } = require('../api/v1/auth/validation');
@@ -16,5 +17,7 @@ router.post('/merchant/login', adminLoginValidation, merchantLogin);
 // customer regsister and login
 router.post('/customer/register', customerRegistrationValidation, customerRegister);
 router.post('/customer/login', adminLoginValidation, customerLogin);
+// logout route
+router.post('/logout', logoutUser);
 
 module.exports = router;
