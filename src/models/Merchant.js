@@ -29,6 +29,12 @@ const merchantSchema = new Schema(
       unique: true,
       trim: true,
     },
+    role: {
+      type: String,
+      required: true,
+      enum: ['merchant'],
+      default: 'merchant',
+    },
     status: {
       type: String,
       required: true,

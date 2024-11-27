@@ -38,7 +38,7 @@ const merchantLogin = async (req, res, next) => {
         httpOnly: true,
         secure: true,
         sameSite: 'none',
-        maxAge: 3600,
+        maxAge: process.env.JWT_EXPIRES_IN,
       })
       .json({ status: 200, message: 'Login successful', data: merchant });
   } catch (error) {

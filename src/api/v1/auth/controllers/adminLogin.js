@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const adminByProperty = require('../../../../services/admin/adminByProperty');
 const createToken = require('../../../../utils/createToken');
+const updateAdmin = require('../../../../services/admin/updateAdmin');
 
 const adminLogin = async (req, res, next) => {
   try {
@@ -20,6 +21,8 @@ const adminLogin = async (req, res, next) => {
     delete admin.updatedAt;
     delete admin.__v;
 
+    const updateAdminResult = await updateAdmin({ email, lastLogin: Date.now() });
+
     // create token
     const token = await createToken({ email: admin.email });
 
@@ -30,9 +33,9 @@ const adminLogin = async (req, res, next) => {
         httpOnly: true,
         secure: true,
         sameSite: 'none',
-        maxAge: 3600,
+        maxAge: process.env.JWT_EXPIRES_IN,
       })
-      .json({ status: 200, message: 'Admin logged in successfully', data: admin });
+      .json({ status: 200, message: 'Admin logged in successfully', data: { ...admin, lastLogin: updateAdminResult.lastLogin } });
   } catch (error) {
     next(error);
   }
