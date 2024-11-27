@@ -18,9 +18,8 @@ const customerSchema = new Schema(
       type: String,
       required: true,
     },
-    varifiedEmail: {
+    verifiedEmail: {
       type: Boolean,
-      required: true,
       default: false,
     },
     phone: {
@@ -30,32 +29,34 @@ const customerSchema = new Schema(
     },
     photo: {
       type: String,
+      required: true,
     },
     status: {
       type: String,
       required: true,
       enum: ['active', 'disabled', 'deleted'],
-      default: 'active',
+      default: 'disabled',
     },
     address: {
       type: {
-        address1: { type: String, required: true },
+        address1: { type: String, required: true, default: 'Address1' },
         address2: { type: String },
-        phone: { type: String, required: true },
-        city: { type: String, required: true },
-        district: { type: String, required: true },
-        zip: { type: String, required: true },
+        phone: { type: String, required: true, default: '0000000000' },
+        city: { type: String, required: true, default: 'City' },
+        district: { type: String, required: true, default: 'District' },
+        zip: { type: String, required: true, default: '0000' },
         type: {
           type: String,
           required: true,
           enum: ['default', 'shipping', 'billing'],
+          default: 'default',
         },
       },
-      required: true,
     },
     lastOrderId: {
       type: Schema.Types.ObjectId,
       ref: 'Order',
+      default: null,
     },
     orderCount: {
       type: Number,
@@ -64,9 +65,11 @@ const customerSchema = new Schema(
     },
     tags: {
       type: [String],
+      default: [],
     },
     notes: {
       type: [String],
+      default: [],
     },
     totalSpent: {
       type: Number,
@@ -87,4 +90,6 @@ const customerSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model('Customer', customerSchema);
+const Customer = model('Customer', customerSchema);
+
+module.exports = Customer;
