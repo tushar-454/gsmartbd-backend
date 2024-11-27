@@ -1,9 +1,10 @@
 const Merchant = require('../../models/Merchant');
 
-const merchantByProperty = async (property, value) => {
+const merchantByProperty = async (property, value, isDoc = true) => {
   const merchant = await Merchant.findOne({ [property]: value });
   if (!merchant) return null;
-  return merchant._doc;
+  if (isDoc) return merchant._doc;
+  return merchant;
 };
 
 module.exports = merchantByProperty;

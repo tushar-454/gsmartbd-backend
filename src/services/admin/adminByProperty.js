@@ -1,9 +1,10 @@
 const Admin = require('../../models/Admin');
 
-const adminByProperty = async (property, value) => {
+const adminByProperty = async (property, value, isDoc = true) => {
   const admin = await Admin.findOne({ [property]: value });
   if (!admin) return null;
-  return admin._doc;
+  if (isDoc) return admin._doc;
+  return admin;
 };
 
 module.exports = adminByProperty;

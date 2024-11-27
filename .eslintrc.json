@@ -21,7 +21,8 @@
     "object-curly-newline": "off",
     "no-underscore-dangle": "off",
     "consistent-return": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "import/no-extraneous-dependencies": "off"
   },
   "plugins": ["prettier"]
 }
