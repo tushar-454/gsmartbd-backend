@@ -22,7 +22,8 @@
     "no-underscore-dangle": "off",
     "consistent-return": "off",
     "max-len": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "implicit-arrow-linebreak": "off"
   },
   "plugins": ["prettier"]
 }

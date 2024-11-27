@@ -10,6 +10,7 @@ const merchantRegister = require('../api/v1/auth/controllers/merchantRegister');
 const { adminLoginValidation, adminRegistrationValidation } = require('../api/v1/auth/validation');
 const customerRegistrationValidation = require('../api/v1/auth/validation/customerRegistrationValidation');
 const merchantRegistrationValidation = require('../api/v1/auth/validation/merchantRegistrationValidation');
+const validateChangePassword = require('../api/v1/auth/validation/validateChangePassword');
 const validateToken = require('../middlewares/validateToken');
 
 router.post('/superadmin/register', adminRegistrationValidation, adminRegister);
@@ -23,7 +24,7 @@ router.post('/customer/login', adminLoginValidation, customerLogin);
 // logout route
 router.post('/logout', logoutUser);
 // change password
-router.patch('/change-password', validateToken, changePassword);
+router.patch('/change-password', validateToken, validateChangePassword, changePassword);
 // forgot password
 router.post('/forgot-password/send-verification-code', sendVerificationCode);
 router.post('/forgot-password/verify-code', verifyCode);
