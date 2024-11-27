@@ -23,7 +23,8 @@
     "consistent-return": "off",
     "max-len": "off",
     "import/no-extraneous-dependencies": "off",
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "quotes": "off"
   },
   "plugins": ["prettier"]
 }

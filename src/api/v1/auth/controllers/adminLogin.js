@@ -35,7 +35,7 @@ const adminLogin = async (req, res, next) => {
         sameSite: 'none',
         maxAge: process.env.JWT_EXPIRES_IN,
       })
-      .json({ status: 200, message: 'Admin logged in successfully', data: { ...admin, lastLogin: updateAdminResult.lastLogin } });
+      .json({ status: 200, message: `${admin.role === 'admin' ? 'Admin' : 'Super Admin'} logged in successfully`, data: { ...admin, lastLogin: updateAdminResult.lastLogin } });
   } catch (error) {
     next(error);
   }

@@ -1,16 +1,6 @@
 const router = require('express').Router();
-const { adminRegister, adminLogin } = require('../api/v1/auth');
-const changePassword = require('../api/v1/auth/controllers/changePassword');
-const customerLogin = require('../api/v1/auth/controllers/customerLogin');
-const customerRegister = require('../api/v1/auth/controllers/customerRegister');
-const { sendVerificationCode, verifyCode, resetPassword } = require('../api/v1/auth/controllers/forgotPassword');
-const logoutUser = require('../api/v1/auth/controllers/logoutUser');
-const merchantLogin = require('../api/v1/auth/controllers/merchantLogin');
-const merchantRegister = require('../api/v1/auth/controllers/merchantRegister');
-const { adminLoginValidation, adminRegistrationValidation } = require('../api/v1/auth/validation');
-const customerRegistrationValidation = require('../api/v1/auth/validation/customerRegistrationValidation');
-const merchantRegistrationValidation = require('../api/v1/auth/validation/merchantRegistrationValidation');
-const validateChangePassword = require('../api/v1/auth/validation/validateChangePassword');
+const { adminRegister, adminLogin, changePassword, customerLogin, customerRegister, logoutUser, merchantLogin, merchantRegister, resetPassword, sendVerificationCode, verifyCode } = require('../api/v1/auth/index');
+const { adminLoginValidation, adminRegistrationValidation, customerRegistrationValidation, merchantRegistrationValidation, validateChangePassword } = require('../api/v1/auth/validation');
 const validateToken = require('../middlewares/validateToken');
 
 router.post('/superadmin/register', adminRegistrationValidation, adminRegister);
