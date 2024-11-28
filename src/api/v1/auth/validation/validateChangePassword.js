@@ -4,6 +4,7 @@ const formatZodErrors = require('../../../../utils/formatZodErrors');
 
 const validateChangePassword = (req, res, next) => {
   const schema = z.object({
+    oldPassword: z.string(),
     newPassword: z.string().min(6, 'Password must be at least 6 characters').regex(alphanumericRegex, 'Password must be alphanumeric and contain at least one letter and one number'),
   });
 
