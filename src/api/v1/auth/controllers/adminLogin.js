@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const adminByProperty = require('../../../../services/admin/adminByProperty');
 const createToken = require('../../../../utils/createToken');
-const updateAdmin = require('../../../../services/admin/updateAdmin');
+const updateAdminById = require('../../../../services/admin/updateAdminById');
 
 const adminLogin = async (req, res, next) => {
   try {
@@ -21,7 +21,7 @@ const adminLogin = async (req, res, next) => {
     delete admin.updatedAt;
     delete admin.__v;
 
-    const updateAdminResult = await updateAdmin({ email, lastLogin: Date.now() });
+    const updateAdminResult = await updateAdminById({ id: admin._id, lastLogin: Date.now() });
 
     // create token
     const token = await createToken({ email: admin.email });

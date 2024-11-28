@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
-const updateAdmin = require('../../../../services/admin/updateAdmin');
 const updateMerchant = require('../../../../services/merchant/updateMerchant');
 const updateCustomer = require('../../../../services/customer/updateCustomer');
+const adminByProperty = require('../../../../services/admin/adminByProperty');
+const updateAdminById = require('../../../../services/admin/updateAdminById');
 
 const changePassword = async (req, res, next) => {
   try {
@@ -14,10 +15,13 @@ const changePassword = async (req, res, next) => {
         error: 'Old password is incorrect',
       });
     }
+
+    const admin = await adminByProperty('email', user.email);
+
     const hashNewPassword = await bcrypt.hash(newPassword, 10);
 
     if (user.role === 'admin') {
-      await updateAdmin({ email: user.email, password: hashNewPassword });
+      await updateAdminById({ id: admin._id, password: hashNewPassword });
       res.status(200).json({
         status: 200,
         message: 'Admin Password changed successfully',
