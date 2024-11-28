@@ -15,7 +15,7 @@ const updateMerchantById = async (req, res, next) => {
     const merchant = await merchantByProperty('_id', id);
 
     if (!merchant) {
-      return res.status(404).json({ message: 'Merchant not found' });
+      return res.status(404).json({ status: 404, message: 'Merchant not found' });
     }
 
     let hashedPassword;

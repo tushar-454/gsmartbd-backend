@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { adminRegister, adminLogin, changePassword, customerLogin, customerRegister, logoutUser, merchantLogin, merchantRegister, resetPassword, sendVerificationCode, verifyCode } = require('../api/v1/auth/index');
+const { adminRegister, adminLogin, changePassword, customerLogin, customerRegister, logoutUser, merchantLogin, merchantRegister, resetPassword, sendVerificationCode, verifyCode } = require('../api/v1/auth/controllers');
 const { adminLoginValidation, adminRegistrationValidation, customerRegistrationValidation, merchantRegistrationValidation, validateChangePassword } = require('../api/v1/auth/validation');
 const validateToken = require('../middlewares/validateToken');
 

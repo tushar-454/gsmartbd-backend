@@ -7,7 +7,6 @@ const getMerchants = async () => {
     return merchants;
   } catch (error) {
     createError(error.message, error.status);
-    console.log('error here whild fetching merchants');
   }
 };
 

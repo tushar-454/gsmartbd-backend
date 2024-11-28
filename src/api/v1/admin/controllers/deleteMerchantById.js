@@ -6,13 +6,13 @@ const deleteMerchantById = async (req, res, next) => {
     const { user } = req;
     const { id } = req.params;
     if (user.role !== 'admin' && user.role !== 'superadmin') {
-      return res.status(403).json({ message: 'Forbidden access' });
+      return res.status(403).json({ status: 403, error: 'Forbidden access' });
     }
 
     const merchant = await merchantByProperty('_id', id);
 
     if (!merchant) {
-      return res.status(404).json({ message: 'Merchant not found' });
+      return res.status(404).json({ status: 404, error: 'Merchant not found' });
     }
 
     const deletedMerchant = await deleteMerchantByIdService(id);

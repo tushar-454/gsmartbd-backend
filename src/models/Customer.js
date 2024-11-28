@@ -1,5 +1,20 @@
 const { model, Schema } = require('mongoose');
 
+const addressSchema = new Schema({
+  address1: { type: String, required: true, default: 'Address1' },
+  address2: { type: String },
+  phone: { type: String, required: true, default: '0000000000' },
+  city: { type: String, required: true, default: 'City' },
+  district: { type: String, required: true, default: 'District' },
+  zip: { type: String, required: true, default: '0000' },
+  type: {
+    type: String,
+    required: true,
+    enum: ['default', 'shipping', 'billing'],
+    default: 'default',
+  },
+});
+
 const customerSchema = new Schema(
   {
     name: {
@@ -44,20 +59,7 @@ const customerSchema = new Schema(
       default: 'disabled',
     },
     address: {
-      type: {
-        address1: { type: String, required: true, default: 'Address1' },
-        address2: { type: String },
-        phone: { type: String, required: true, default: '0000000000' },
-        city: { type: String, required: true, default: 'City' },
-        district: { type: String, required: true, default: 'District' },
-        zip: { type: String, required: true, default: '0000' },
-        type: {
-          type: String,
-          required: true,
-          enum: ['default', 'shipping', 'billing'],
-          default: 'default',
-        },
-      },
+      type: addressSchema,
     },
     lastOrderId: {
       type: Schema.Types.ObjectId,

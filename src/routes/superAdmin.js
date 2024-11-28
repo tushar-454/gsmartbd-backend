@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getSuperAdmin, updateSuperAdmin, getAdminById, updateAdminById, deleteAdminById, getAdmins } = require('../api/v1/superadmin');
+const { getSuperAdmin, updateSuperAdmin, getAdminById, updateAdminById, deleteAdminById, getAdmins } = require('../api/v1/superadmin/controllers');
 const { updateSuperAdminValidation, updateAdminByIdValidation } = require('../api/v1/superadmin/validation');
 
 router.get('/', getSuperAdmin);
