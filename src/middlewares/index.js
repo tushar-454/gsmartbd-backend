@@ -8,6 +8,7 @@ const corsModule = require('cors');
 const { cors } = require('../config/index');
 const globalError = require('../utils/globalError');
 const routes = require('../routes');
+const logger = require('./logger');
 
 const applyMiddleware = (app) => {
   app.use(
@@ -28,6 +29,7 @@ const applyMiddleware = (app) => {
   //     validateResponses: true,
   //   })
   // );
+  app.use(logger);
   app.use(routes);
   app.use(globalError);
 };
