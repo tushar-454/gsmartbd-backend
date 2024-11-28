@@ -14,17 +14,12 @@ const blogSchema = new Schema(
     },
     authorId: {
       type: Schema.Types.ObjectId,
-      required: true,
       refPath: 'authorModel',
     },
     authorModel: {
       type: String,
       required: true,
-      enum: ['Admin', 'Merchant'],
-    },
-    merchantId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Merchant',
+      enum: ['Admin', 'Merchant', 'Customer'],
     },
     tags: {
       type: [String],
@@ -46,4 +41,5 @@ const blogSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model('Blog', blogSchema);
+const Blog = model('Blog', blogSchema);
+module.exports = Blog;
