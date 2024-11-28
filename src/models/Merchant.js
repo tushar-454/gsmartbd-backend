@@ -83,17 +83,9 @@ const merchantSchema = new Schema(
       type: {
         nationalId: {
           type: String,
-          required: true,
-          unique: true,
-          trim: true,
-          default: 'XXXXXXXXXXX',
         },
         businessLicense: {
           type: String,
-          required: true,
-          unique: true,
-          trim: true,
-          default: 'XXXXXXXXXXX',
         },
       },
     },
