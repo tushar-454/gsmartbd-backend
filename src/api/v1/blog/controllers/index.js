@@ -3,6 +3,7 @@ const createBlog = require('./createBlog');
 const getBlogById = require('./getBlogById');
 const updateBlogById = require('./updateBlogById');
 const deleteBlogById = require('./deleteBlogById');
+const deleteBlogsByIds = require('./deleteBlogsByIds');
 
 module.exports = {
   getBlogs,
@@ -10,4 +11,5 @@ module.exports = {
   getBlogById,
   updateBlogById,
   deleteBlogById,
+  deleteBlogsByIds,
 };
