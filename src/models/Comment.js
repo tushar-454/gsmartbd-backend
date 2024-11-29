@@ -10,7 +10,12 @@ const commentSchema = new Schema(
     authorId: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'Customer',
+      refPath: 'authorModel',
+    },
+    authorModel: {
+      type: String,
+      required: true,
+      enum: ['Merchnat', 'Customer', 'Admin'],
     },
     body: {
       type: String,
@@ -26,4 +31,5 @@ const commentSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model('Comment', commentSchema);
+const Comment = model('Comment', commentSchema);
+module.exports = Comment;
