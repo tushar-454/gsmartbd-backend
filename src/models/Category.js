@@ -5,6 +5,7 @@ const categorySchema = new Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
       trim: true,
       maxlength: 50,
     },
@@ -21,8 +22,7 @@ const categorySchema = new Schema(
     products: [
       {
         type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'Product',
+        ref: 'Blog',
       },
     ],
     status: {
@@ -31,7 +31,15 @@ const categorySchema = new Schema(
       enum: ['active', 'disabled', 'deleted'],
       default: 'active',
     },
+    type: {
+      type: String,
+      required: true,
+      enum: ['main', 'sub'],
+      default: 'main',
+    },
   },
   { timestamps: true }
 );
-module.exports = model('Category', categorySchema);
+
+const Category = model('Category', categorySchema);
+module.exports = Category;
