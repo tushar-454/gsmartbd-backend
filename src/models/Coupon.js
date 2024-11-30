@@ -44,4 +44,5 @@ const couponSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model('Coupon', couponSchema);
+const Coupon = model('Coupon', couponSchema);
+module.exports = Coupon;
