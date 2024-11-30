@@ -7,6 +7,7 @@ const blogRoutes = require('./blog');
 const commentRoutes = require('./comment');
 const categoriesRoutes = require('./category');
 const collectionRoutes = require('./collection');
+const customerRoutes = require('./customer');
 
 router.use('/api/v1/auth', authRoutes);
 router.use('/api/v1/superadmin', validateToken, superAdminRoutes);
@@ -15,5 +16,6 @@ router.use('/api/v1/blogs', blogRoutes);
 router.use('/api/v1/comments', commentRoutes);
 router.use('/api/v1/categories', validateToken, categoriesRoutes);
 router.use('/api/v1/collections', validateToken, collectionRoutes);
+router.use('/api/v1/customers', validateToken, customerRoutes);
 
 module.exports = router;
