@@ -12,6 +12,16 @@ const collectionSchema = new Schema(
       type: String,
       required: true,
     },
+    ownerId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      refPath: 'ownerType',
+    },
+    ownerType: {
+      type: String,
+      required: true,
+      enum: ['Merchant', 'Admin'],
+    },
     products: [
       {
         type: Schema.Types.ObjectId,
@@ -35,4 +45,5 @@ const collectionSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model('Collection', collectionSchema);
+const Collection = model('Collection', collectionSchema);
+module.exports = Collection;
