@@ -24,7 +24,8 @@
     "max-len": "off",
     "import/no-extraneous-dependencies": "off",
     "implicit-arrow-linebreak": "off",
-    "quotes": "off"
+    "quotes": "off",
+    "no-nested-ternary": "off"
   },
   "plugins": ["prettier"]
 }

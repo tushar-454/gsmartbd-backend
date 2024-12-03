@@ -1139,8 +1139,7 @@ paths:
                   items:
                     type: string
                     example: ['create', 'read', 'update', 'delete']
-              required:
-                ['name', 'email', 'password', 'role', status, permissions]
+              required: ['name', 'email', 'password', 'role', status, permissions]
       responses:
         '200':
           description: Admin updated successfully
@@ -1666,23 +1665,7 @@ paths:
                       type: string
                       description: Trade license of the merchant
                       example: 1234567890123456
-              required:
-                [
-                  'name',
-                  'email',
-                  'phone',
-                  'status',
-                  'merchantId',
-                  'products',
-                  'address',
-                  'website',
-                  'description',
-                  'logo',
-                  'social_media',
-                  'tags',
-                  'notes',
-                  'verification_info',
-                ]
+              required: ['name', 'email', 'phone', 'status', 'merchantId', 'products', 'address', 'website', 'description', 'logo', 'social_media', 'tags', 'notes', 'verification_info']
 
       responses:
         '200':
@@ -2413,8 +2396,7 @@ paths:
                   description: Ids of the merchants
                   items:
                     type: string
-                  example:
-                    ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
+                  example: ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
                 status:
                   type: string
                   description: Status of the merchants
@@ -2483,8 +2465,7 @@ paths:
                   description: Ids of the merchants
                   items:
                     type: string
-                  example:
-                    ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
+                  example: ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
               required: ['ids']
       responses:
         '200':
@@ -2547,8 +2528,7 @@ paths:
                   description: Ids of the customers
                   items:
                     type: string
-                  example:
-                    ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
+                  example: ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
                 status:
                   type: string
                   description: Status of the customers
@@ -2618,8 +2598,7 @@ paths:
                   description: Ids of the customers
                   items:
                     type: string
-                  example:
-                    ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
+                  example: ['612f7b3b7b3b3b3b3b3b3b3b', '612f7b3b7b3b3b3b3b3b3b3b']
               required: ['ids']
       responses:
         '200':
@@ -2887,16 +2866,7 @@ paths:
                         type: string
                         description: Published at of the author
                         example: 2021-09-01T00:00:00.000Z
-                    required:
-                      [
-                        'title',
-                        'bodyHtml',
-                        'tags',
-                        'author',
-                        'vendorId',
-                        'status',
-                        'publishedAt',
-                      ]
+                    required: ['title', 'bodyHtml', 'tags', 'author', 'vendorId', 'status', 'publishedAt']
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -4316,18 +4286,7 @@ components:
               type: string
               format: date-time
               example: 2021-09-01T12:00:00.000Z
-          required:
-            [
-              _id,
-              name,
-              email,
-              photo,
-              password,
-              role,
-              status,
-              permissions,
-              lastLogin,
-            ]
+          required: [_id, name, email, photo, password, role, status, permissions, lastLogin]
         - $ref: '#/components/schemas/Timestamp'
     Blog:
       allOf:
@@ -4371,19 +4330,7 @@ components:
               type: string
               format: date-time
               example: 2021-09-01T12:00:00.000Z
-          required:
-            [
-              _id,
-              post_id,
-              title,
-              body_html,
-              author_id,
-              vendor_id,
-              tags,
-              status,
-              vidoes,
-              publishedAt,
-            ]
+          required: [_id, post_id, title, body_html, author_id, vendor_id, tags, status, vidoes, publishedAt]
         - $ref: '#/components/schemas/Timestamp'
     Cart:
       allOf:
@@ -4624,24 +4571,7 @@ components:
               type: number
               format: int32
               example: 10000
-          required:
-            [
-              _id,
-              name,
-              email,
-              photo,
-              password,
-              varified_email,
-              status,
-              addresses,
-              last_order_id,
-              note,
-              orders_count,
-              points,
-              pointsAmount,
-              tags,
-              total_spent,
-            ]
+          required: [_id, name, email, photo, password, varified_email, status, addresses, last_order_id, note, orders_count, points, pointsAmount, tags, total_spent]
         - $ref: '#/components/schemas/Timestamp'
     Discount:
       allOf:
@@ -4738,8 +4668,7 @@ components:
                   type: string
                   enum: [home, shipping]
                   example: home
-              required:
-                [name, phone, email, address1, city, district, zip, type]
+              required: [name, phone, email, address1, city, district, zip, type]
             shipping_address:
               type: object
               properties:
@@ -4775,8 +4704,7 @@ components:
                   type: string
                   enum: [home, shipping]
                   example: home
-              required:
-                [name, phone, email, address1, city, district, zip, type]
+              required: [name, phone, email, address1, city, district, zip, type]
             line_items:
               type: array
               items:
@@ -4822,21 +4750,7 @@ components:
                     type: number
                     format: int32
                     example: 20
-                required:
-                  [
-                    _id,
-                    product_id,
-                    variant_id,
-                    title,
-                    price,
-                    quantity,
-                    total,
-                    size,
-                    color,
-                    sku,
-                    image,
-                    discount,
-                  ]
+                required: [_id, product_id, variant_id, title, price, quantity, total, size, color, sku, image, discount]
             total_price:
               type: number
               format: int32
@@ -4871,38 +4785,9 @@ components:
               example: ['note1', 'note2']
             status:
               type: string
-              enum:
-                [
-                  pending,
-                  confirmed,
-                  shipped,
-                  delivered,
-                  cancelled,
-                  refunded,
-                  returned,
-                  disputed,
-                  onhold,
-                ]
+              enum: [pending, confirmed, shipped, delivered, cancelled, refunded, returned, disputed, onhold]
               example: pending
-          required:
-            [
-              _id,
-              customer_id,
-              name,
-              email,
-              phone,
-              billing_address,
-              shipping_address,
-              line_items,
-              total_price,
-              total_discount,
-              payment_gateway,
-              order_number,
-              fullfillment_by,
-              tags,
-              notes,
-              status,
-            ]
+          required: [_id, customer_id, name, email, phone, billing_address, shipping_address, line_items, total_price, total_discount, payment_gateway, order_number, fullfillment_by, tags, notes, status]
         - $ref: '#/components/schemas/Timestamp'
     Reels:
       allOf:
@@ -5000,16 +4885,7 @@ components:
             note:
               type: string
               example: This is a transaction
-          required:
-            [
-              _id,
-              customer_id,
-              order_id,
-              amount,
-              payment_gateway,
-              payment_gateway_details,
-              status,
-            ]
+          required: [_id, customer_id, order_id, amount, payment_gateway, payment_gateway_details, status]
         - $ref: '#/components/schemas/Timestamp'
     Timestamp:
       type: object
@@ -5112,26 +4988,7 @@ components:
               items:
                 type: string
               example: ['2309dfs9fj4324dfd334']
-          required:
-            [
-              _id,
-              name,
-              email,
-              password,
-              phone,
-              photo,
-              status,
-              rating,
-              products,
-              address,
-              website,
-              description,
-              social_links,
-              tags,
-              notes,
-              verification_info,
-              reviews,
-            ]
+          required: [_id, name, email, password, phone, photo, status, rating, products, address, website, description, social_links, tags, notes, verification_info, reviews]
         - $ref: '#/components/schemas/Timestamp'
   responses:
     '400':
