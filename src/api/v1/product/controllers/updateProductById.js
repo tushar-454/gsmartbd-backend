@@ -5,7 +5,7 @@ const updateProductById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { user } = req;
-    const { title, htmlBody, categories, status, images, varients, tags, stock, coupon, discount, slug, theme, rating } = req;
+    const { title, htmlBody, categories, status, images, varients, tags, stock, coupon, discount, theme, rating } = req.body;
 
     if (user.role !== 'admin' && user.role !== 'superadmin' && user.role !== 'merchant') {
       return res.status(403).json({
@@ -30,13 +30,10 @@ const updateProductById = async (req, res, next) => {
       });
     }
 
+    let slug;
+    if (title) slug = title.toLowerCase().split(' ').join('-');
+
     const updatedProduct = await updateProductService({ id, title, htmlBody, categories, status, images, varients, tags, stock, coupon, discount, slug, theme, rating });
-    // if (updatedProduct.modifiedCount !== 0) {
-    //   return res.status(400).json({
-    //     status: 400,
-    //     error: 'Product not updated',
-    //   });
-    // }
     if (updatedProduct.modifiedCount === 0) {
       return res.status(400).json({
         status: 400,
@@ -46,6 +43,7 @@ const updateProductById = async (req, res, next) => {
     res.status(200).json({
       status: 200,
       message: 'Product updated successfully',
+      data: updatedProduct,
     });
   } catch (error) {
     next(error);

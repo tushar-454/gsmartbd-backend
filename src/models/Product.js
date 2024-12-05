@@ -101,7 +101,7 @@ const productSchema = new Schema(
       required: true,
     },
     theme: {
-      type: String,
+      type: Number,
       required: true,
     },
     rating: {

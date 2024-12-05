@@ -3,7 +3,7 @@ const createProductService = require('../../../../services/product/createProduct
 const createProduct = async (req, res, next) => {
   try {
     const { user } = req;
-    const { title, htmlBody, productType, images, varients, tags } = req.body;
+    const { title, htmlBody, productType, categories, images, varients, tags } = req.body;
     if (user.role !== 'admin' && user.role !== 'merchant') {
       return res.status(403).send({
         status: 403,
@@ -17,7 +17,7 @@ const createProduct = async (req, res, next) => {
     const ownerModel = user.role === 'admin' ? 'Admin' : 'Merchant';
     const stock = varients.reduce((acc, curr) => acc + curr.inventoryQuantity, 0);
 
-    const createdProduct = await createProductService({ title, htmlBody, productType, images, varients, tags, slug, ownerId, ownerModel, stock });
+    const createdProduct = await createProductService({ title, htmlBody, productType, categories, images, varients, tags, slug, ownerId, ownerModel, stock });
 
     if (!createdProduct) {
       return res.status(400).send({

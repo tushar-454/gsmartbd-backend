@@ -1,12 +1,13 @@
 const createError = require('../../utils/createError');
 const Product = require('../../models/Product');
 
-const createProduct = async ({ title, htmlBody, productType, images, varients, tags, slug, ownerId, ownerModel, stock }) => {
+const createProduct = async ({ title, htmlBody, productType, categories, images, varients, tags, slug, ownerId, ownerModel, stock }) => {
   try {
     const newProduct = await new Product({
       title,
       htmlBody,
       productType,
+      categories,
       images,
       varients,
       tags,
