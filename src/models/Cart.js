@@ -40,4 +40,6 @@ const cartSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model('Cart', cartSchema);
+const Cart = model('Cart', cartSchema);
+
+module.exports = Cart;

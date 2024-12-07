@@ -31,7 +31,7 @@ const adminLogin = async (req, res, next) => {
       .status(200)
       .cookie('token', token, {
         httpOnly: true,
-        secure: true,
+        secure: false,
         sameSite: 'none',
         maxAge: process.env.JWT_EXPIRES_IN,
       })

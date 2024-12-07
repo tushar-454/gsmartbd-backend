@@ -11,6 +11,7 @@ const customerRoutes = require('./customer');
 const merchantRoutes = require('./merchant');
 const couponRoutes = require('./coupon');
 const productRoutes = require('./product');
+const cartRoutes = require('./cart');
 
 router.use('/api/v1/auth', authRoutes);
 router.use('/api/v1/superadmin', validateToken, superAdminRoutes);
@@ -23,5 +24,6 @@ router.use('/api/v1/customers', validateToken, customerRoutes);
 router.use('/api/v1/merchants', validateToken, merchantRoutes);
 router.use('/api/v1/coupons', validateToken, couponRoutes);
 router.use('/api/v1/products', productRoutes);
+router.use('/api/v1/carts', validateToken, cartRoutes);
 
 module.exports = router;
