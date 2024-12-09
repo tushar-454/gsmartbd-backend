@@ -129,15 +129,15 @@ const orderSchema = new Schema(
         },
         size: {
           type: String,
-          required: true,
+          default: 'N/A',
         },
         color: {
           type: String,
-          required: true,
+          default: 'N/A',
         },
         sku: {
           type: String,
-          required: true,
+          default: 'N/A',
         },
         image: {
           type: String,
@@ -159,6 +159,7 @@ const orderSchema = new Schema(
     },
     cancelReason: {
       type: String,
+      default: null,
     },
     merchantId: {
       type: Schema.Types.ObjectId,
@@ -167,7 +168,7 @@ const orderSchema = new Schema(
     fullfillmentBy: {
       type: String,
       required: true,
-      enum: ['gsmartbd', 'merchant'],
+      enum: ['admin', 'merchant'],
     },
     tags: {
       type: [String],
@@ -178,17 +179,7 @@ const orderSchema = new Schema(
     status: {
       type: String,
       required: true,
-      enum: [
-        'pending',
-        'confirmed',
-        'shipped',
-        'delivered',
-        'cancelled',
-        'refunded',
-        'returned',
-        'disputed',
-        'onhold',
-      ],
+      enum: ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled', 'refunded', 'returned', 'disputed', 'onhold'],
       default: 'pending',
     },
   },

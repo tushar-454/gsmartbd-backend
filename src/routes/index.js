@@ -13,6 +13,7 @@ const couponRoutes = require('./coupon');
 const productRoutes = require('./product');
 const cartRoutes = require('./cart');
 const reviewRoutes = require('./review');
+const orderRoutes = require('./order');
 
 router.use('/api/v1/auth', authRoutes);
 router.use('/api/v1/superadmin', validateToken, superAdminRoutes);
@@ -27,5 +28,6 @@ router.use('/api/v1/coupons', validateToken, couponRoutes);
 router.use('/api/v1/products', productRoutes);
 router.use('/api/v1/carts', validateToken, cartRoutes);
 router.use('/api/v1/reviews', reviewRoutes);
+router.use('/api/v1/orders', validateToken, orderRoutes);
 
 module.exports = router;
